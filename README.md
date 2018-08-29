@@ -1,4 +1,6 @@
-# Getting Started with the HPC Course
+Getting Started with the HPC Course
+===================================
+
 
 This is a collection of documents aiming to introduce the environment and typical workflows in HPC systems.
 The tutorial addresses—and should be useful for—both the Introduction to HPC (COMS30005) and Advanced HPC (COMS30006) courses.
@@ -7,10 +9,10 @@ Note, however, that we likely cover more material than is directly relevant for 
 ## Structure
 
 This repository aims to serve both as introductory material for the course labs and as reference to be used throughout the assignment.
-When reading this material for the first time, we suggest that you follow the ordering presented in the section below and try the commands and code yourself.
+When reading this material for the first time, we suggest that you follow the ordering presented in the [section below](#suggested-reading-order) and try the commands and code yourself.
 However, each page aims to be self-contained and cover its topic without relying on a specific reading order.
 
-<!-- TODO: Insert link everywhere in this section -->
+<!-- TODO: Insert links everywhere in this section -->
 
 ### Suggested reading order
 
@@ -24,7 +26,7 @@ We suggest you go through this tutorial as follows:
 4. HPC Compilers
 5. MPI
 6. Performance Analysis Tools
-7. OpenMP<sup>†</sup>
+7. OpenMP†
 8. Case Study: Jacobi code optimisation
 
 <!-- TODO: Advanced HPC–specific pages -->
