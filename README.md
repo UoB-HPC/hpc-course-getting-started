@@ -19,7 +19,7 @@ However, each page aims to be self-contained and cover its topic without relying
 If you are unfamiliar with HPC systems, it's worth covering the basics of connecting to and using as supercomputer before moving on to programming tools.
 We suggest you go through this tutorial as follows:
 
-0. Prerequisites
+0. [Prerequisites](Prerequisites.md) – _Please read this first!_
 1. Connecting to BlueCrystal
 2. Software Modules and BlueCrystal
 3. Queueing systems
