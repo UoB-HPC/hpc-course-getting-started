@@ -32,7 +32,7 @@ If you require access from outside, e.g. from your home network, see [Connecting
 
 From a laptop connected to eduroam, a lab machine, or a computer otherwise attached to the University's network, run the following command to connect to BCp3, replacing `<username>` with your UoB username:
 
-```bash
+```
 $ ssh <username>@bluecrystalp3.bris.ac.uk
 ```
 
@@ -60,7 +60,7 @@ Note that the content of this section applies to _any remote server running Linu
 If you don't already have an SSH key, or if you want to use a new one for BlueCrystal, we will generate one now.
 On your local machine, go into the `.ssh` directory in your home folder (creating it if it doesn't exist) and follow the instructions to create your key:
 
-```bash
+```
 $ mkdir ~/.ssh # if it doesn't exist
 $ cd ~/.ssh
 $ ssh-keygen -t rsa -b 4096
@@ -154,7 +154,7 @@ The other option is to connect to snowy, a server in the CS Department that exis
 Once connected, you will be in an environment similar to a lab machine, from where you can connect to BlueCrystal.
 To connect to snowy, use you UoB username and password:
 
-```bash
+```
 $ ssh <username>@snowy.cs.bris.ac.uk
 ```
 
