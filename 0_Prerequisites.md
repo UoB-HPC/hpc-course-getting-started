@@ -46,6 +46,11 @@ To transfer files between your machine and the supercomputer, you can use `scp`,
 However, manually transferring files every time you make a change is cumbersome, so a better alternative is to set up [SSHFS](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh) to mount a remote directory as a virtual drive on your local machine.
 Another option is to set up your text editor to automatically sync with a remote folder ([example for VS Code](https://marketplace.visualstudio.com/items?itemName=mkloubert.vscode-remote-workspace)).
 
+We provide the starting code and some of the examples through GitHub repositories.
+Although you can obtain the files without using `git`, we _strongly_ encourage you to use version control for your assignment.
+Without such a system, you will find yourself saving multiple copies of your files with attempted optimisations, and you risk losing track of which changes stay and which go.
+If you are not familiar with Git, a good starting point is [the Atlassian tutorial series](https://www.atlassian.com/git/tutorials)—use it, it may well save you a great deal of wasted effort!
+
 ### Suggestions for Windows Users
 
 While we _encourage_ you to use a Linux machine, or at least a [*nix](https://en.wikipedia.org/wiki/Unix-like) environment, this is _not strictly required_.
