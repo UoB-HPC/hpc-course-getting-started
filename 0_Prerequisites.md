@@ -5,7 +5,7 @@ Prerequisites
 
 Throughout this tutorial-style introduction to working with HPC codes, we will assume that the reader:
 
-- Is familiar with his programming language of choice (excluding, of course, frameworks taught in this course that extend or make use of certain language capabilities).
+- Is familiar with the C programming language.
 - Is familiar with using a [command line](https://en.wikipedia.org/wiki/Command-line_interface) in a [Linux](https://en.wikipedia.org/wiki/Linux) environment.
 Since the supercomputers used for this course are accessed _exclussively_ through a [terminal](https://en.wikipedia.org/wiki/Terminal_emulator), this is _essential_.
 This tutorial assumes that the shell used is [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)).
