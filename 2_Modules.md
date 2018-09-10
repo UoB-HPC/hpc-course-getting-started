@@ -202,3 +202,19 @@ $ gcc -v
 # Some lines omitted
 gcc version 7.1.0 (GCC)
 ```
+
+Loading the `languages/gcc-7.1.0` module has put the installation directory of the version 7.1.0 at the front of the system's path, so binaries and libraries are not searched here first, effectively _hiding_ the system version.
+If you are interested, you can look at everything the module does with the `show` command (the [modulefile reference](http://modules.sourceforge.net/man/modulefile.html) may come in handy):
+
+```bash
+$ module show languages/gcc-7.1.0
+-------------------------------------------------------------------
+/cm/shared/modulefiles/languages/gcc-7.1.0:
+
+module-whatis    adds GCC 7.1.0 to your environment variables
+prepend-path     PATH /cm/shared/languages/GCC-7.1.0/bin
+prepend-path     LD_LIBRARY_PATH /cm/shared/languages/GCC-7.1.0/lib64
+prepend-path     LD_LIBRARY_PATH /cm/shared/languages/GCC-7.1.0/lib
+prepend-path     MANPATH /cm/shared/languages/GCC-7.1.0/share/man
+-------------------------------------------------------------------
+```
