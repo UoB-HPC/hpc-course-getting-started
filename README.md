@@ -22,12 +22,12 @@ We suggest you go through this tutorial as follows:
 0. [Prerequisites](0_Prerequisites.md) – _Please read this first!_
 1. [Connecting to BlueCrystal](1_Connecting_to_BlueCrystal.md)
 2. [Software Modules and BlueCrystal](2_Modules.md)
-3. [Queueing systems](3_Queueing_systems.md)
-4. HPC Compilers
+3. [Queueing Systems](3_Queueing_systems.md)
+4. [HPC Compilers](4_Compilers.md)
 5. MPI
 6. Performance Analysis Tools
 7. OpenMP†
-8. Case Study: Jacobi code optimisation
+8. Case Study: Jacobi Code Optimisation
 
 <!-- TODO: Advanced HPC–specific pages -->
 
