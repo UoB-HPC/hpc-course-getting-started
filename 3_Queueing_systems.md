@@ -113,16 +113,18 @@ You will generally want to specify the number of nodes and processor cores that 
 This is done using the following syntax:
 
 ```bash
-$ qsub <options> /path/to/application
+$ qsub <options> /path/to/script
 ```
 
-The following table lists a few common options:
+**Note**: `qsub` will only accept shell scripts, so you can't run your application's binary directly.
+
+The following table lists a few common job control options:
 
 | `qsub` argument | Meaning             |
 | --------------- | ------------------- |
 | `-q <queue>`    | The queue to run on |
-| `-lnodes=<n>:ppn=<c>` | Request `n` nodes and `c` cores on each node |
-| `-lwalltime=<t>` | Specifies that your job should be allowed to run for at most `t` (time). You should specify `t` as `hh:mm:ss` |
+| `-l nodes=<n>:ppn=<c>` | Request `n` nodes and `c` cores on each node |
+| `-l walltime=<t>` | Specifies that your job should be allowed to run for at most `t` (time). You should specify `t` as `hh:mm:ss` |
 | `-N <name>` | Sets the job's name, so you can easily identify it later |
 | `-o <file>` | Sets a name for the file where the job's output will be saved. If you don't set this, an automatically generated named will be used |
 | `-j oe` | By default, the job's standard output and standard error are saved in separate files. Setting this option will use a single file for both |
@@ -145,13 +147,13 @@ For example, the compute nodes in BCp3 are dual-socket 8-core machines, so askin
 For example, to run LBM on a single node and 16 cores for a maximum of 10 minutes, I could use the following command:
 
 ```bash
-$ qsub -q teaching -lnodes=1:ppn=16,walltime=0:10:0 ./d2q9-bgk
+$ qsub -q teaching -lnodes=1:ppn=16,walltime=0:10:0 ./d2q9-bgk.job
 ```
 
 To run the same application on 4 full nodes:
 
 ```bash
-$ qsub -q teaching -lnodes=4:ppn=16 mpirun ./d2q9-bgk
+$ qsub -q teaching -lnodes=4:ppn=16 ./d2q9-bgk.job
 ```
 
 **Note**: If your application uses MPI, you will need to use an MPI launcher.
@@ -193,12 +195,14 @@ The result is the same as specifying the commands directly on the CLI:
 $ qsub -N LBM -o lbm.out -j oe -q teaching -l nodes=1:ppn=16,walltime=00:05:00 $HOME/work/d2q9-bgk
 ```
 
+If the same argument is specified both on the command line and inside the jobs file, its value on the command line takes precedence.
+
 Of course, in a script you can have more than a single command, and they will all be run on the allocated compute node(s).
 There are also special environment variables that are set by PBS when it runs your job and which can be used to get information about your allocation; [this page](https://wiki.hpcc.msu.edu/display/hpccdocs/Advanced+Scripting+using+PBS+Environment+Variables) lists some of them.
 
 <!-- TODO: Create and link to a full jobfile example -->
 
-**Note**: Make sure you pass your job script to `qsub`,
+**Note**: Make sure you pass your job script _to `qsub`_,
 If you don't, it will just be run as a regular shell script _on the login node_.
 The following are examples of the job file **not** being submitted to the queue:
 
@@ -206,6 +210,35 @@ The following are examples of the job file **not** being submitted to the queue:
 $ ./my.job
 $ bash my.job
 ```
+
+#### Interactive jobs
+
+Sometimes it can be useful to be able to run commands _on a compute node_ interactively, as if you were directly connected to it.
+You can do this through an _interactive job_, for which you can ask with `qsub -I`.
+You can use other `qsub` arguments as normal to select your resources.
+When the job begins, you will be give a shell on one of the compute nodes allocated to your job (which will reflect in you shell prompt changing), and commands you type there will run directly on the node.
+To finish your job, simply `exit` from your shell.
+The following is an example of using an interactive job:
+
+```bash
+[ap13004@newblue1 ~]$ echo "This runs on a login node."
+This runs on a login node.
+[ap13004@newblue1 ~]$ qsub -I -lnodes=1,walltime=1:0:0 -q teaching
+qsub: waiting for job 7456439.master.cm.cluster to start
+qsub: job 7456439.master.cm.cluster ready
+
+[ap13004@node31-033 ~]$ echo "This runs on a compute node."
+This runs on a compute node.
+[ap13004@node31-033 ~]$ exit
+logout
+
+qsub: job 7456439.master.cm.cluster completed
+[ap13004@newblue1 ~]$ echo "Now back to the login node."
+Now back to the login node.
+```
+
+Please note that using an interactive session will keep the node(s) requested allocated _for the whole session_, not just when you are actively running commands.
+Since all the resources are shared with the other users on the system, **only use an interactive job for tasks that you cannot do on a login node or through job scripts, and give up your allocation as soon as you have finished**.
 
 ### More resources
 
@@ -218,9 +251,165 @@ If you have previously used SLURM, [this page from the University of Southern Ca
 
 ## BCp4 – SLURM
 
-<!-- TODO: SLURM section -->
+### Listing jobs
 
-_Work in progress._
+To see _all_ the jobs queued on the system, type `squeue`:
+
+```bash
+$ squeue
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           1340878       gpu  2ycu2u1  ck14921 PD       0:00      1 (Resources)
+           1340605       gpu   run_tf   yl1220 PD       0:00      1 (Priority)
+           1340938       gpu run_atte  hd12584 PD       0:00      1 (Priority)
+# Many lines omitted...
+           1330979       cpu      m12  wk14463  R 11-02:07:08      1 compute480
+           1329938       cpu texit000    ggpoh  R 12-14:19:34      1 compute329
+           1328086       cpu      m22  wk14463  R 13-18:04:55      1 compute503
+```
+
+The state is usually either running (`R`) or pending (`PD`).
+When a job is running, you can see which compute nodes it is using in the rightmost column.
+When it is pending, the reason why it hasn't started yet is shown.
+
+To see a _single user's jobs_, use `squeue -u <username>`:
+
+```bash
+$ squeue -u $USER
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           1340971       cpu     bash  ap13004  R       0:05      1 compute382
+```
+
+You can see all the details about a job, even after it has completed, using `scontrol`:
+
+```bash
+$ scontrol show -d job 1340971
+JobId=1340971 JobName=bash
+   UserId=ap13004(273677) GroupId=mven(16621) MCS_label=N/A
+   Priority=988 Nice=0 Account=default QOS=normal WCKey=*cosc17r
+   JobState=COMPLETED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=0 Reboot=0 ExitCode=0:0
+   DerivedExitCode=0:0
+   RunTime=00:05:22 TimeLimit=2-00:00:00 TimeMin=N/A
+   SubmitTime=2018-09-25T12:22:37 EligibleTime=2018-09-25T12:22:37
+   StartTime=2018-09-25T12:22:37 EndTime=2018-09-25T12:27:59 Deadline=N/A
+   PreemptTime=None SuspendTime=None SecsPreSuspend=0
+   Partition=cpu AllocNode:Sid=bc4login1:12671
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=compute382
+   BatchHost=compute382
+   NumNodes=1 NumCPUs=28 NumTasks=28 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   TRES=cpu=28,mem=28000M,node=1
+   Socks/Node=* NtasksPerN:B:S:C=28:0:*:* CoreSpec=*
+     Nodes=compute382 CPU_IDs=0-27 Mem=28000
+   MinCPUsNode=28 MinMemoryCPU=1000M MinTmpDiskNode=0
+   Features=(null) Gres=(null) Reservation=(null)
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=bash
+   WorkDir=/mnt/storage/home/ap13004
+   Power=
+```
+
+In SLURM, resources are organised into _partitions_ (as opposed to PBS queues), which can be listed with `sinfo`:
+
+```bash
+$ sinfo
+PARTITION       AVAIL  TIMELIMIT  NODES  STATE NODELIST
+veryshort          up    6:00:00      2    mix compute[473,507]
+veryshort          up    6:00:00    442  alloc compute[078-263,265-273,275-381,383-441,443-445,450-472,474-506,508-525],highmem[10-13]
+veryshort          up    6:00:00      8   idle compute[264,274,382,442,446-449]
+cpu*               up 14-00:00:0      2    mix compute[473,507]
+cpu*               up 14-00:00:0    438  alloc compute[078-263,265-273,275-381,383-441,443-445,450-472,474-506,508-525]
+cpu*               up 14-00:00:0      8   idle compute[264,274,382,442,446-449]
+hmem               up 14-00:00:0      8  alloc highmem[10-17]
+gpu                up 7-00:00:00     25    mix gpu[01,03-14,16-24,27-28,30]
+gpu_veryshort      up    1:00:00      2   idle gpu[31-32]
+# Some lines omitted...
+```
+
+By state, nodes can be free (`idle`), fully in use (`alloc`), or partially in use (`mix`). Note that partitions are not necessarily disjoint.
+
+You can query a specified partition only using `-p`:
+
+```bash
+$ sinfo -p hmem
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+hmem         up 14-00:00:0      8  alloc highmem[10-17]
+```
+
+More details and usage example about these commands are in the manpages: `man squeue`, `man sinfo`, `man scontrol`.
+
+### Deleting jobs
+
+Use `scancel` to remove jobs from the queue or stop in-progress ones:
+
+```bash
+$ scancel 1340971
+```
+
+### Submitting jobs
+
+Unlike PBS, SLURM distinguishes between two ways to run jobs:
+
+- You can run your application directly using `srun`. You can use your binary directly, and resources will be allocated and freed automatically. You cannot do this with PBS.
+- You can use a job script, which is submitted using `sbatch`. This is similar to using `qsub`.
+
+Both approaches take the same arguments, and the syntax is as follows:
+
+```bash
+$ srun   [options] /path/to/binary
+$ sbatch [options] /path/to/script
+```
+
+The following table lists a few common job control options:
+
+| SLURM argument  | Meaning             |
+| --------------- | ------------------- |
+| `-p <partition>`    | The partition to run on |
+| `-N <n>` | Request `n` nodes |
+| `--ntasks-per-node <c>` | Request `c` tasks to be run on each node (often related to number of cores required) |
+| `-t <t>` | Specifies that your job should be allowed to run for at most `t` (time). You should specify `t` as `hh:mm:ss` |
+| `-J <name>` | Sets the job's name, so you can easily identify it later |
+| `-o <file>` | Sets a name for the file where the job's output will be saved. If you don't set this, an automatically generated named will be used |
+| `--exclusive` | Does not allow other jobs to be scheduled on your allocated compute nodes, even if you don't fully utilise their resources |
+| `--gres=gpu:<g>` | Request `g` GPUs. GPUs are only present in nodes in the `gpu` partition, where each node has 2 GPUs |
+
+If you compare this to the equivalent PBS table above, note that `-j oe` and `-V` are implied on SLURM.
+
+#### Job files
+
+SLURM job files work virtually the same way as [PBS job files](#job-files) (please read this section before continuing if you haven't used job files before).
+The notable differences are:
+
+- Job paramters are prefixed with `#SBATCH` in the script.
+- You need to use SLURM arguments, and the script is submitted using `sbatch`.
+
+Here is the same example script shown above, but using SLURM paramters instead:
+
+```bash
+$ cat my.job
+#!/bin/bash
+#SBATCH --job-name LBM
+#SBATCH -o lbm.out
+#SBATCH -p teaching
+#SBATCH --nodes 1
+#SBATCH --ntasks-per-node 16
+#SBATCH -t 00:05:00
+
+$HOME/work/d2q9-bgk
+```
+
+#### Interactive jobs
+
+Use `srun --pty bash` to run an interactive job:
+
+```bash
+[ap13004@bc4login1 ~]$ srun -N1 --tasks-per-node 28 --pty bash
+[ap13004@compute382 ~]$ echo "Now running on a compute node."
+Now running on a compute node.
+```
+
+Please note that using an interactive session will keep the node(s) requested allocated _for the whole session_, not just when you are actively running commands.
+Since all the resources are shared with the other users on the system, **only use an interactive job for tasks that you cannot do on a login node or through job scripts, and give up your allocation as soon as you have finished**.
 
 ### More resources
 
