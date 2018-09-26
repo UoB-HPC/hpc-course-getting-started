@@ -24,8 +24,8 @@ We suggest you go through this tutorial as follows:
 2. [Software Modules and BlueCrystal](2_Modules.md)
 3. [Queueing Systems](3_Queueing_Systems.md)
 4. [HPC Compilers](4_Compilers.md)
-5. MPI
-6. Performance Analysis Tools
+5. [Performance Analysis Tools](5_Performance_Analysis_Tools.md)
+6. MPI
 7. OpenMP†
 8. Case Study: Jacobi Code Optimisation
 
@@ -45,12 +45,12 @@ If you encounter a problem, it's worth checking if there isn't already a solutio
 
 In the past, we have used various content that you may find useful throughout the unit. The list below is in no particular order.
 
-- [Using BlueCrystal labsheet on BlackBoard](https://www.ole.bris.ac.uk/bbcswebdav/pid-3122083-dt-content-rid-8392438_2/courses/COMS30005_2017/Open%20Access%20for%20CS/labs/intro-handout.pdf)
+- [Using BlueCrystal labsheet on BlackBoard](https://www.ole.bris.ac.uk/bbcswebdav/pid-3307009-dt-content-rid-9643695_2/courses/COMS30005_2018/Open%20Access%20for%20CS/labs/intro-handout.pdf)
 - [OpenMP and MPI Examples on GitHub](https://github.com/UoB-HPC/hpc-course-examples)
 - [OpenMP Tutorial Videos by Tim Mattson @ Intel](https://www.youtube.com/watch?v=nE-xN4Bf8XI&list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG)
 - [GPU Programming Examples on GitHub](https://github.com/UoB-HPC/advanced-hpc-examples) (likely relevant for Advanced HPC only)
 
-<!-- TODO: either move the material from BB here or replace this section with a link toBB -->
+In addition, there are many books and links to online resoures [on the units' BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/content/listContent.jsp?course_id=_231297_1&content_id=_3306995_1&mode=reset).
 
 ----
 
