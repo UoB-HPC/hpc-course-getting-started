@@ -150,7 +150,7 @@ module load tools/git
 
 If you use this method, _you_ are responsible for any issues you create with different library versions.
 When you encounter unexplained bugs and when you collect performance data, it is always worth running with a clean environment.
-See the [note about how environment is preserved in compute jobs in Queueing Systems](3_Queueing_systems.md#Environment-modules-and-queueing-systems).
+See the [note about how environment is preserved in compute jobs in Queueing Systems](3_Queueing_Systems.md#Environment-modules-and-queueing-systems).
 
 ## A worked example
 
