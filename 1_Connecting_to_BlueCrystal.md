@@ -44,12 +44,28 @@ After you type your password, you should get a prompt showing your username and 
 
 For BCp4, only the hostname is different:
 
-```bash
-$ ssh username@bc4login.acrc.bris.ac.uk
+```
+$ ssh <username>@bc4login.acrc.bris.ac.uk
 [ap13004@bc4login4 ~]$
 ```
 
 If you want to change your provided password, simply run `passwd` and follow the instructions.
+
+### Running graphical programs
+
+If you want to run a program that has a GUI, you need to enable X forwarding:
+
+```
+$ ssh -X <username>@bluecrystalp3.bris.ac.uk
+```
+
+If you get a `Can't open display error`, then you have not used `-X`.
+You will need to log out and log back in using the forwarding option.
+If you _can_ start GUI programs but parts of the interface are missing, try logging out and using the trusted forwarding option instead:
+
+```
+$ ssh -Y <username>@bluecrystalp3.bris.ac.uk
+```
 
 ### Passwordless SSH access
 
@@ -185,6 +201,9 @@ Host bcp3
     IdentityFile ~/.ssh/uob
     ProxyCommand ssh -q -W %h:%p snowy
 ```
+
+If you want to [use GUI applications](#running-graphical-programs) when connecting with a proxy jump, you will need to use `-X` (or `-Y`) for _all_ the proxy connections.
+If you use the `ProxyCommand` configuration, just add the flag to the `ssh` command line.
 
 ## Transferring files
 
