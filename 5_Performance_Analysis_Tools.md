@@ -25,7 +25,7 @@ This table shows a summary of all the tools presented below and their support on
 | perf     | ✔         | ✔          | Run `perf`                                            |
 | gprof    | ✔         | ✔          | Compile with `gcc -pg`, run `gprof`                   |
 | PAPI     | ✔         | ✔          | `module load libraries/{gnu,intel}_builds/papi-5.3.0` |
-| Valgrind | ✗         | ✔          | Install from source                                   |
+| Valgrind | ✔         | ✔          | Run `valgrind`                                        |
 | TAU      | ✔         | ✔          | See `module av \|& grep -i tau-`                      |
 | vTune    | ✔         | ✔          | `module load intel-cluster-studio/vtune/vtune-2015`   |
 | Advisor  | ✗         | ✗          | Install through student licence on own machine        |
@@ -176,9 +176,9 @@ $ valgrind --tool=cachegrind ./test
 ==31134== LL miss rate:      0.6% (    0.6%     +    1.6%  )
 ```
 
-If you want to use Valgrind, you will need to [install it from source](http://valgrind.org/downloads/).
-The installation process should be simple and should not cause any issues.
+Valgrind is already installed on BCp3 and you don't need to load any module; just run `valgrind`.
 Documentation is [available online](http://valgrind.org/docs/manual/manual.html) and there is also a [quick start guide](http://valgrind.org/docs/manual/QuickStart.html).
+See `man valgrind` for CLI usage information.
 
 ### TAU
 
