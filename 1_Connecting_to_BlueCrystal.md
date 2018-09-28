@@ -191,9 +191,9 @@ If you have followed all the steps so far, your SSH configuration file should co
 IdentitiesOnly yes
 
 Host snowy
-  HostName snowy.cs.bris.ac.uk
-  User ap13004
-  IdentityFile ~/.ssh/uob
+    HostName snowy.cs.bris.ac.uk
+    User ap13004
+    IdentityFile ~/.ssh/uob
 
 Host bcp3
     HostName bluecrystalp3.bris.ac.uk
@@ -234,9 +234,9 @@ If you want to use a GUI for your file transfers, you can use:
 
 Depending on your editor of choice, you will either be editing files on your own machine and transferring them using, for example, SSHFS, or editing directly on the BlueCrystal.
 
-If you want to edit files locally and transfer, some options are discussed in [Prerequisites](0_prerequisites.md#Required-(and-useful)-tools).
+If you want to edit files locally and transfer, some options are discussed in [_Prerequisites_](0_prerequisites.md#Required-(and-useful)-tools).
 
-If your editor supports editing files remotely, then you can use your _local editor_ to open _files on BlueCrystal).
+If your editor supports editing files remotely, then you can use your _local editor_ to open _files on BlueCrystal_).
 For example, you can achieve this using [a VSCode plugin](https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode) or [the `scp://` scheme in Vim](http://vim.wikia.com/wiki/Editing_remote_files_via_scp_in_vim).
 
 Finally, you can use a terminal editor on BlueCrystal.
