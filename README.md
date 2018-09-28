@@ -26,7 +26,7 @@ We suggest you go through this tutorial as follows:
 4. [HPC Compilers](4_Compilers.md)
 5. [Performance Analysis Tools](5_Performance_Analysis_Tools.md)
 6. MPI
-7. OpenMP†
+7. OpenMP<sup>†</sup>
 8. Case Study: Jacobi Code Optimisation
 
 <!-- TODO: Advanced HPC–specific pages -->
