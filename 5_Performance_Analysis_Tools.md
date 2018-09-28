@@ -20,16 +20,17 @@ For the Intel tools, if you require anything that is not installed, [obtaining a
 
 This table shows a summary of all the tools presented below and their support on BCp3.
 
-| Tool     | Installed | Compatible | Usage                                                 |
-| -------- | :-------: | :--------: | ----------------------------------------------------- |
-| perf     | ✔         | ✔          | Run `perf`                                            |
-| gprof    | ✔         | ✔          | Compile with `gcc -pg`, run `gprof`                   |
-| PAPI     | ✔         | ✔          | `module load libraries/{gnu,intel}_builds/papi-5.3.0` |
-| Valgrind | ✔         | ✔          | Run `valgrind`                                        |
-| TAU      | ✔         | ✔          | See `module av \|& grep -i tau-`                      |
-| vTune    | ✔         | ✔          | `module load intel-cluster-studio/vtune/vtune-2015`   |
-| Advisor  | ✗         | ✗          | Install through student licence on own machine        |
-| Extrae   | ✗         | ✔          | Install from source                                   |
+| Tool       | Installed | Compatible | Usage                                                 |
+| ---------- | :-------: | :--------: | ----------------------------------------------------- |
+| perf       | ✔         | ✔          | Run `perf`                                            |
+| gprof      | ✔         | ✔          | Compile with `gcc -pg`, run `gprof`                   |
+| PAPI       | ✔         | ✔          | `module load libraries/{gnu,intel}_builds/papi-5.3.0` |
+| Valgrind   | ✔         | ✔          | Run `valgrind`                                        |
+| TAU        | ✔         | ✔          | See `module av \|& grep -i tau-`                      |
+| vTune      | ✔         | ✔          | `module load intel-cluster-studio/vtune/vtune-2015`   |
+| Advisor    | ✗         | ✗          | Install through student licence on own machine        |
+| MPI Tracer | ✗         | ✗          | Install through student licence on own machine        |
+| Extrae     | ✗         | ✔          | Install from source                                   |
 
 ## Command-line tools
 
@@ -318,6 +319,18 @@ Advisor will also show estimated speed-ups from vectoristion, as well as data th
 
 Similarly to vTune, Intel have a [getting started guide](https://software.intel.com/en-us/get-started-with-advisor) which presents the commands and UI elements.
 We recommend reading this first, then referring to [the usage guide](https://software.intel.com/en-us/advisor-user-guide) for further documentation.
+
+### Intel MPI Trace Analyzer and Collector
+
+When writing MPI programs, it is important that you understand your communication patterns and how this affect the performance (and correctness!) of your application.
+One tool that can help with visualising your MPI application's structure and identifying potential issues is [Intel's MPI Trace tools](https://software.intel.com/en-us/intel-trace-analyzer).
+
+![ITAC](https://software.intel.com/sites/default/files/managed/f0/b5/intel-trace-analyzer-app.png) <br />
+_Screenshot of the Intel Trace Analyzer and Collector_
+
+To use this tool, you will need to install it on your own machine through the Intel student licence.
+Documentation is [available online](https://software.intel.com/en-us/articles/intel-trace-analyzer-and-collector-documentation), and there is a [getting started guide](https://software.intel.com/en-us/get-started-with-itac).
+There is also a [page explaning the GUI](https://software.intel.com/en-us/articles/introducing-intel-trace-analyzer-gui).
 
 ### Extrae and Paraver
 
