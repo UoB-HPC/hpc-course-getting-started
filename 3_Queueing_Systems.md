@@ -157,7 +157,7 @@ $ qsub -q teaching -lnodes=4:ppn=16 ./my.job
 ```
 
 **Note**: If your application uses MPI, you will need to use an MPI launcher.
-Read [the MPI page](5_MPI.md) for more details.
+Read [the MPI page](6_MPI.md) for more details.
 
 #### Job files
 
@@ -215,7 +215,7 @@ $ bash my.job
 
 Sometimes it can be useful to be able to run commands _on a compute node_ interactively, as if you were directly connected to it.
 You can do this through an _interactive job_, for which you can ask with `qsub -I`.
-You can use other `qsub` arguments as normal to select your resources.
+You can use other `qsub` arguments to select your resources, e.g. as above.
 When the job begins, you will be give a shell on one of the compute nodes allocated to your job (which will reflect in you shell prompt changing), and commands you type there will run directly on the node.
 To finish your job, simply `exit` from your shell.
 The following is an example of using an interactive job:

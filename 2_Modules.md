@@ -84,7 +84,7 @@ Currently Loaded Modules:
 
 As shown above, loading a module may automatically load other modules marked as dependencies.
 
-It is common practice for the version of a package to listed as the last component of the module name.
+It is common practice for the version of a package be to listed as the last component of the module name.
 If you don't give a specific version, then the default one will be loaded.
 The default version is marked when you list modules with `avail`:
 

@@ -38,7 +38,7 @@ Items marked with † cover advanced topics and may exceed the scope of the Intr
 
 ### FAQs
 
-In addition to the reference pages, we are collecting answers to common questions in a dedicated FAQ page.
+In addition to the reference pages, we are collecting answers to common questions in [a dedicated FAQ page](FAQ.md).
 If you encounter a problem, it's worth checking if there isn't already a solution to it!
 
 ## Additional Material
