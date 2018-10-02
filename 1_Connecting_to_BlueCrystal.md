@@ -10,7 +10,8 @@ You will connect to BlueCrystal from your shell, over SSH. Make sure you have re
 If you are using a lab machine, everything is already set up.
 
 In order to access BlueCrystal, you need to have an account.
-If you don't have an account yet and haven't received any instructions, e.g. via email, on how to obtain one, please ask as lab helper.
+If you don't have an account yet and haven't received any instructions, e.g. via email, on how to obtain one, you can find them on the unit's BlackBoard page.
+If you have any issues signing up, please ask a lab helper.
 
 In the sections below, shell commands are prefixed with a `$` symbol.
 This is to indicate that you would type them at a shell prompt and _you do not need to type the `$`_.
@@ -20,6 +21,9 @@ In the following example, `echo hello` is the command typed into the shell, and 
 $ echo hello
 hello
 ```
+
+Where a username is required, we either use the placeholder `<username>` or the example `ab12345`.
+**Make sure you use _your own_ username in your commands and configuration files**.
 
 BlueCrystal is split into several _phases_, which are system parts that have been added over time to keep up with hardware advances.
 The phases are independent and differ slightly in their configuration, so it's important that you don't confuse them.
@@ -39,17 +43,19 @@ $ ssh <username>@bluecrystalp3.bris.ac.uk
 After you type your password, you should get a prompt showing your username and the system's hostname, for example:
 
 ```
-[ap13004@newblue2 ~]$
+[ab12345@newblue2 ~]$
 ```
 
 For BCp4, only the hostname is different:
 
 ```
 $ ssh <username>@bc4login.acrc.bris.ac.uk
-[ap13004@bc4login4 ~]$
+[ab12345@bc4login4 ~]$
 ```
 
-If you want to change your provided password, simply run `passwd` and follow the instructions.
+Note that you get automatically-generated passwords when you sign up for an account.
+These are different between Phase 3 and Phase 4, and different again from your University account's password.
+If you want to change the provided password, simply run `passwd` and follow the instructions.
 
 ### Running graphical programs
 
@@ -107,29 +113,17 @@ The public key (`uob.pub`) needs to be uploaded on any server where you want to 
 To do this, first make sure that you have a `.ssh` folder on BlueCrystal, and an `authorized_keys` file inside it with `0644` permissions:
 
 ```bash
-$ ssh ap13004@bluecrystalp3.bris.ac.uk
-[ap13004@newblue2 ~]$ mkdir .ssh
-[ap13004@newblue2 ~]$ touch .ssh/authorized_keys
-[ap13004@newblue2 ~]$ chmod 644 .ssh/authorized_keys
+$ ssh ab12345@bluecrystalp3.bris.ac.uk
+[ab12345@newblue2 ~]$ mkdir .ssh
+[ab12345@newblue2 ~]$ touch .ssh/authorized_keys
+[ab12345@newblue2 ~]$ chmod 644 .ssh/authorized_keys
 ```
 
 Then, coming back to your local machine, upload your public key to the `.ssh` folder on BlueCrystal (make sure you don't upload your private key by mistake!):
 
 ```bash
-$ cat .ssh/uob.pub | ssh ap13004@bluecrystalp3.bris.ac.uk 'cat >> .ssh/authorized_keys'
+$ cat .ssh/uob.pub | ssh ab12345@bluecrystalp3.bris.ac.uk 'cat >> .ssh/authorized_keys'
 ```
-
-<!-- ```bash
-$ scp ~/.ssh/uob/pub ap13004@bluecrystalp3.bris.ac.uk:.ssh/
-```
-
-Back on BlueCrystal, set this key as an _authorized key_:
-
-```bash
-[ap13004@newblue2 ~]$ cd .ssh
-[ap13004@newblue2 .ssh]$ cat uob.pub >> authorized_keys
-[ap13004@newblue2 .ssh]$ chmod 644 authorized_keys
-``` -->
 
 Finally, configure SSH to use the key.
 To do this, open the `~/.ssh/config` file (creating if it does not exist) and add a configuration for BlueCrystal:
@@ -137,7 +131,7 @@ To do this, open the `~/.ssh/config` file (creating if it does not exist) and ad
 ```
 Host bcp3
     HostName bluecrystalp3.bris.ac.uk
-    User ap13004
+    User ab12345
     IdentityFile ~/.ssh/uob
 ```
 
@@ -147,7 +141,7 @@ You should now be able to connect easily:
 
 ```bash
 $ ssh bcp3
-[ap13004@newblue2 ~]$
+[ab12345@newblue2 ~]$
 ```
 
 **Note**: There are several schools of thought regarding how many SSH keys you should be using (see [this SO discussion](https://security.stackexchange.com/questions/40050/best-practice-separate-ssh-key-per-host-and-user-vs-one-ssh-key-for-all-hos) for some revealing insight).
@@ -168,7 +162,7 @@ From there you can access BlueCrystal (and any other University resources) as if
 
 The other option is to connect to snowy, a server in the CS Department that exists specifically to be accessed from outside.
 Once connected, you will be in an environment similar to a lab machine, from where you can connect to BlueCrystal.
-To connect to snowy, use you UoB username and password:
+To connect to snowy, use your UoB username and password:
 
 ```
 $ ssh <username>@snowy.cs.bris.ac.uk
@@ -185,19 +179,19 @@ ProxyCommand ssh -q -W %h:%p snowy
 You can find more details about SSH proxy jumps [on WikiBooks](https://en.wikibooks.org/wiki/OpenSSH%2FCookbook%2FProxies_and_Jump_Hosts#Passing_Through_One_or_More_Gateways_Using_ProxyJump).
 In particular, if you have a recent version of OpenSSH, then you can use the `ProxyJump` directive.
 
-If you have followed all the steps so far, your SSH configuration file should contain the following (but using your own username, and potentially BCp4 instead od BCp3):
+If you have followed all the steps so far, your SSH configuration file should contain the following (but using your own username, and potentially BCp4 instead of BCp3):
 
 ```
 IdentitiesOnly yes
 
 Host snowy
     HostName snowy.cs.bris.ac.uk
-    User ap13004
+    User ab12345
     IdentityFile ~/.ssh/uob
 
 Host bcp3
     HostName bluecrystalp3.bris.ac.uk
-    User ap13004
+    User ab12345
     IdentityFile ~/.ssh/uob
     ProxyCommand ssh -q -W %h:%p snowy
 ```
@@ -221,7 +215,7 @@ The second command does the reverse process, _uploading_ the local `hello.c` fil
 Both commands assume you have followed the [SSH key setup above](#passwordless-ssh-access), which we recommend; if you haven't, then you will need to use the fully `username@host` syntax and enter your password:
 
 ```bash
-$ scp hello.c ap13004@bluecrystalp3.bris.ac.uk:test.c
+$ scp hello.c ab12345@bluecrystalp3.bris.ac.uk:test.c
 ```
 
 If you want to use a GUI for your file transfers, you can use:
@@ -240,7 +234,7 @@ If your editor supports editing files remotely, then you can use your _local edi
 For example, you can achieve this using [a VSCode plugin](https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode) or [the `scp://` scheme in Vim](http://vim.wikia.com/wiki/Editing_remote_files_via_scp_in_vim).
 
 Finally, you can use a terminal editor on BlueCrystal.
-Emacs, Vim, and nano are available, among other.
+Emacs, Vim, and nano are available, among others.
 If you decide to use Vim and you haven't used it before, you can greatly improve the default configuration; see [amix's basic vimrc](https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim) for a good starting point or [Will Price's vim configuration](https://github.com/willprice/dotfiles/tree/master/vim/.vim) for a more advanced setup.
 Emacs has more sensible defaults, so you may find that it needs less tweaking.
 Using nano on anything else than a temporary basis or in emergencies is controversial...

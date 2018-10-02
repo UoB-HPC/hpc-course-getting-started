@@ -84,8 +84,8 @@ $ qstat -u $USER
                                                                                Req'd    Req'd       Elap
 Job ID               Username    Queue    Jobname          SessID NDS   TSK    Memory   Time    S   Time
 -------------------- ----------- -------- ---------------- ------ ----- ------ ------ --------- - ---------
-7452534.master.c     ap13004     veryshor LBM                 --    --     --     --   01:00:00  C       --
-7452536.master.c     ap13004     teaching test3             13380   --     --     --   00:10:00  R  00:00:04
+7452534.master.c     ab12345     veryshor LBM                 --    --     --     --   01:00:00  C       --
+7452536.master.c     ab12345     teaching test3             13380   --     --     --   00:10:00  R  00:00:04
 ```
 
 In the output above, my `LBM` job ran on the `veryshort` queue and is now `C`ompleted, while `test3` is still `R`unnin on the `teaching` queue.
@@ -144,16 +144,16 @@ If your request cannot be fulfilled, your job will be blocked in the queue forev
 For example, the compute nodes in BCp3 are dual-socket 8-core machines, so asking for more than 16 cores per node will prevent your job from running.
 
 
-For example, to run LBM on a single node and 16 cores for a maximum of 10 minutes, I could use the following command:
+For example, to run a job on a single node and 16 cores for a maximum of 10 minutes, I could use the following command:
 
 ```bash
-$ qsub -q teaching -lnodes=1:ppn=16,walltime=0:10:0 ./d2q9-bgk.job
+$ qsub -q teaching -lnodes=1:ppn=16,walltime=0:10:0 ./my.job
 ```
 
 To run the same application on 4 full nodes:
 
 ```bash
-$ qsub -q teaching -lnodes=4:ppn=16 ./d2q9-bgk.job
+$ qsub -q teaching -lnodes=4:ppn=16 ./my.job
 ```
 
 **Note**: If your application uses MPI, you will need to use an MPI launcher.
@@ -180,7 +180,7 @@ $ cat my.job
 #PBS -q teaching
 #PBS -l nodes=1:ppn=16,walltime=00:05:00
 
-$HOME/work/d2q9-bgk
+$HOME/work/a.out
 ```
 
 This can be run by simply using:
@@ -192,7 +192,7 @@ $ qsub my.job
 The result is the same as specifying the commands directly on the CLI:
 
 ```bash
-$ qsub -N LBM -o lbm.out -j oe -q teaching -l nodes=1:ppn=16,walltime=00:05:00 $HOME/work/d2q9-bgk
+$ qsub -N LBM -o lbm.out -j oe -q teaching -l nodes=1:ppn=16,walltime=00:05:00 $HOME/work/a.out
 ```
 
 If the same argument is specified both on the command line and inside the jobs file, its value on the command line takes precedence.
@@ -221,19 +221,19 @@ To finish your job, simply `exit` from your shell.
 The following is an example of using an interactive job:
 
 ```bash
-[ap13004@newblue1 ~]$ echo "This runs on a login node."
+[ab12345@newblue1 ~]$ echo "This runs on a login node."
 This runs on a login node.
-[ap13004@newblue1 ~]$ qsub -I -lnodes=1,walltime=1:0:0 -q teaching
+[ab12345@newblue1 ~]$ qsub -I -lnodes=1,walltime=1:0:0 -q teaching
 qsub: waiting for job 7456439.master.cm.cluster to start
 qsub: job 7456439.master.cm.cluster ready
 
-[ap13004@node31-033 ~]$ echo "This runs on a compute node."
+[ab12345@node31-033 ~]$ echo "This runs on a compute node."
 This runs on a compute node.
-[ap13004@node31-033 ~]$ exit
+[ab12345@node31-033 ~]$ exit
 logout
 
 qsub: job 7456439.master.cm.cluster completed
-[ap13004@newblue1 ~]$ echo "Now back to the login node."
+[ab12345@newblue1 ~]$ echo "Now back to the login node."
 Now back to the login node.
 ```
 
@@ -276,7 +276,7 @@ To see a _single user's jobs_, use `squeue -u <username>`:
 ```bash
 $ squeue -u $USER
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-           1340971       cpu     bash  ap13004  R       0:05      1 compute382
+           1340971       cpu     bash  ab12345  R       0:05      1 compute382
 ```
 
 You can see all the details about a job, even after it has completed, using `scontrol`:
@@ -284,7 +284,7 @@ You can see all the details about a job, even after it has completed, using `sco
 ```bash
 $ scontrol show -d job 1340971
 JobId=1340971 JobName=bash
-   UserId=ap13004(273677) GroupId=mven(16621) MCS_label=N/A
+   UserId=ab12345(999999) GroupId=mven(16621) MCS_label=N/A
    Priority=988 Nice=0 Account=default QOS=normal WCKey=*cosc17r
    JobState=COMPLETED Reason=None Dependency=(null)
    Requeue=1 Restarts=0 BatchFlag=0 Reboot=0 ExitCode=0:0
@@ -305,7 +305,7 @@ JobId=1340971 JobName=bash
    Features=(null) Gres=(null) Reservation=(null)
    OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
    Command=bash
-   WorkDir=/mnt/storage/home/ap13004
+   WorkDir=/mnt/storage/home/ab12345
    Power=
 ```
 
@@ -403,8 +403,8 @@ $HOME/work/d2q9-bgk
 Use `srun --pty bash` to run an interactive job:
 
 ```bash
-[ap13004@bc4login1 ~]$ srun -N1 --tasks-per-node 28 --pty bash
-[ap13004@compute382 ~]$ echo "Now running on a compute node."
+[ab12345@bc4login1 ~]$ srun -N1 --tasks-per-node 28 --pty bash
+[ab12345@compute382 ~]$ echo "Now running on a compute node."
 Now running on a compute node.
 ```
 
@@ -420,8 +420,6 @@ If in doubt, always check the manpage on the system.
 
 You may also find useful the [SLURM command summary sheet](https://slurm.schedmd.com/pdfs/summary.pdf) or the [SLURM job management cheat sheet from the Iowa State University](https://gif.biotech.iastate.edu/slurm-slurm-job-management-cheat-sheet).
 If you have previously used PBS, [this page from the University of Southern California](https://hpcc.usc.edu/support/documentation/pbs-to-slurm/) gives a mapping between commonly used SLURM and PBS commands.
-
-## Common commands
 
 ## Environment modules and queueing systems
 

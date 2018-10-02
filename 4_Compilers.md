@@ -22,7 +22,6 @@ $ module av languages/gcc
 ---------------------------------------------------------------------- /cm/shared/modulefiles ----------------------------------------------------------------------
 languages/gcc-4.6.1 languages/gcc-4.7   languages/gcc-4.8.4 languages/gcc-4.9.1 languages/gcc-5.1   languages/gcc-6.1
 languages/gcc-4.6.4 languages/gcc-4.8.1 languages/gcc-4.8.5 languages/gcc-5.0   languages/gcc-5.3   languages/gcc-7.1.0
-[ap13004@newblue2 ~]$ module av languages/intel-compiler
 ```
 
 Similarly, Intel Compiler modules are names `languages/intel-compiler-<version>`:
@@ -39,7 +38,7 @@ languages/intel-compiler-15               languages/intel-compiler-15-update-2
 
 Load the module for the desired compiler and version before building your application.
 
-**Note**: The `gcc` command is available in the system by default, i.e. without loading a module, becuase the the Linux distribution comes packaged with a compiler.
+**Note**: The `gcc` command is available in the system by default, i.e. without loading a module, because the Linux distribution comes packaged with a compiler.
 However, note that this version is significantly older than what is available through modules, and so may generate slower code:
 
 ```

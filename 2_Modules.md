@@ -1,7 +1,7 @@
 # Software Modules
 
 On supercomputers, it is common practice to manage software using [environment modules](http://modules.sourceforge.net/).
-Modules allow the admins to install a wide variety of software, potentially including several version of the same package, while trying to avoid conflicts.
+Modules allow the admins to install a wide variety of software, potentially including several versions of the same package, while trying to avoid conflicts.
 
 The basic working principle for modules is simple: instead of installing everything in the default system location, e.g. `/usr/local`, each software package is installed into its own directory.
 Because these individual directories are not by default on the system's paths, it will not appear as if the packages are actually installed.
@@ -12,7 +12,11 @@ From then on, everything will be virtually the same as having the package instal
 ## Common modules operations
 
 Although the implementation of the modules package itself is different between BCp3 and BCp4, there should be very few user-facing differences.
-The commands listed below apply to both phases—and virtually any other modules implementation you may come across—although output may differ slightly.
+The commands listed below apply to both phases—and virtually any other modules implementation you may come across.
+
+If you follow along, keep in mind that some of the examples below are from Phase 3 and some are from Phase 4.
+Therefore, you may see and need to use slightly different modules names.
+The [worked example](#a-worked-example) is all on Phase 3.
 
 ### Listing loaded modules
 
@@ -85,7 +89,7 @@ If you don't give a specific version, then the default one will be loaded.
 The default version is marked when you list modules with `avail`:
 
 ```bash
-$ module av GCC/
+$ module av GCC
 --------------------------- /mnt/storage/easybuild/modules/all ---------------------------
    GCC/4.9.3-2.25
    GCC/5.4.0-2.26

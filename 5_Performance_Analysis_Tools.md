@@ -20,17 +20,17 @@ For the Intel tools, if you require anything that is not installed, [obtaining a
 
 This table shows a summary of all the tools presented below and their support on BCp3.
 
-| Tool       | Installed | Compatible | Usage                                                 |
-| ---------- | :-------: | :--------: | ----------------------------------------------------- |
-| perf       | ✔         | ✔          | Run `perf`                                            |
-| gprof      | ✔         | ✔          | Compile with `gcc -pg`, run `gprof`                   |
-| PAPI       | ✔         | ✔          | `module load libraries/{gnu,intel}_builds/papi-5.3.0` |
-| Valgrind   | ✔         | ✔          | Run `valgrind`                                        |
-| TAU        | ✔         | ✔          | See `module av \|& grep -i tau-`                      |
-| vTune      | ✔         | ✔          | `module load intel-cluster-studio/vtune/vtune-2015`   |
-| Advisor    | ✗         | ✗          | Install through student licence on own machine        |
-| MPI Tracer | ✗         | ✗          | Install through student licence on own machine        |
-| Extrae     | ✗         | ✔          | Install from source                                   |
+| Tool       | Installed | Compatible | Usage                                                    |
+| ---------- | :-------: | :--------: | -------------------------------------------------------- |
+| perf       | ✔         | ✔          | Run `perf`                                               |
+| gprof      | ✔         | ✔          | Compile with `gcc -pg`, run `gprof`                      |
+| PAPI       | ✔         | ✔          | `module load libraries/{gnu,intel}_builds/papi-5.3.0`    |
+| Valgrind   | ✔         | ✔          | Run `valgrind`                                           |
+| TAU        | ✔         | ✔          | See `module av \|& grep -i tau-`                         |
+| vTune      | ✔         | ✔          | `module load intel-cluster-studio/vtune/vtune-2015`      |
+| Advisor    | ✔         | ✗          | `source advixe-vars.sh`, run `advixe-gui` or `advixe-cl` |
+| MPI Tracer | ✗         | ✗          | Install through student licence on own machine           |
+| Extrae     | ✗         | ✔          | Install from source                                      |
 
 ## Command-line tools
 
@@ -225,8 +225,8 @@ NODE 0;CONTEXT 0;THREAD 0:
 100.0          143        1,353           1          44    1353319 .TAU application
  89.4            1        1,210          44          44      27504 parallel begin/end [OpenMP]
  88.9        0.729        1,202          42          42      28639 for enter/exit [OpenMP]
- 46.4        0.002          627           1           1     627323 parallelfor (parallel begin/end) [OpenMP location: file:/panfs/panasas01/cosc/ap13004/workspace/STREAM/stream.c <267, 272>]
- 46.4          321          627           1           1     627306 parallelfor (loop body) [OpenMP location: file:/panfs/panasas01/cosc/ap13004/workspace/STREAM/stream.c <267, 272>]
+ 46.4        0.002          627           1           1     627323 parallelfor (parallel begin/end) [OpenMP location: file:/panfs/panasas01/cosc/ab12345/workspace/STREAM/stream.c <267, 272>]
+ 46.4          321          627           1           1     627306 parallelfor (loop body) [OpenMP location: file:/panfs/panasas01/cosc/ab12345/workspace/STREAM/stream.c <267, 272>]
  32.7            3          443          44          44      10069 barrier enter/exit [OpenMP]
 # More output omitted
 ```
@@ -291,20 +291,28 @@ The guides have step-by-step instructions, including screenshots and explanation
 
 vTune can also be used from the command line, which doesn't require you to use X forwarding over SSH.
 If you want to use this approach, the command is called `amplxe-cl` and you can find [a guide on Intel's website](https://software.intel.com/en-us/vtune-amplifier-help-running-command-line-analysis).
+Perhaps more importantly, this lets you profile your code _on a compute node_ by just adding the command to your job script.
+This way, you don't get any of the noise on the login node interfering with your analysis.
 
-**Important**: There licence on BlueCrystal only allows a limited number of users to run vTune simultaneously, and it is likely that this number is significantly smaller than the number of students on the unit.
+**Important**: The licence on BlueCrystal only allows a limited number of users to run vTune simultaneously, and it is likely that this number is significantly smaller than the number of students on the unit.
 Therefore, occasionally you may be unable to run vTune if it is also being used by many others at the same time, e.g. during labs.
-The only thing you can do is wait until a licence becomes available.
-However, it also means that you should terminate your sessions as soon as possible, so that you don't hold up a licence unnecessarily.
+This also means that you should terminate your sessions as soon as possible, so that you don't hold up a licence unnecessarily.
+A sensible strategy is to use the CLI tools for data collection—which _doesn't_ use a licence—, then use a local installation to look at the results.
+This maximises the availability of the shared resources.
 
 ### Intel Advisor
 
 [Intel Advisor](https://software.intel.com/en-us/advisor) is a performance tool that focuses on vectorisation and parallelisation of applications.
 As such, it is less comprehensive than vTune, but it can be easier to work with when vectorisation and threading is the main focus.
-Advisor is not installed on BCp3 (partly due to some legacy configuration that make it difficult to run it), but you can install it on your own machine using the student licence program.
 
-Advisor's binaries are named similarly to those in vTune.
-The GUI is called `advixe-gui`, and the CLI interface is `advixe-cl`.
+On BCp3, Advisor is part of the latest Intel compiler module, `languages/intel-compiler-16-u2`.
+However, the commands aren't available by default and you first need to load a set of environment variables:
+
+```
+$ source /cm/shared/languages/Intel-Compiler-XE-16-U2/advisor_xe/advixe-vars.sh
+```
+
+The binaries are named similarly to those in vTune: the GUI is called `advixe-gui`, and the CLI interface is `advixe-cl`.
 
 ![Advisor table](https://i.imgur.com/HMytbaD.png) <br />
 _Screenshot of the Advisor profiler table_
@@ -319,6 +327,9 @@ Advisor will also show estimated speed-ups from vectoristion, as well as data th
 
 Similarly to vTune, Intel have a [getting started guide](https://software.intel.com/en-us/get-started-with-advisor) which presents the commands and UI elements.
 We recommend reading this first, then referring to [the usage guide](https://software.intel.com/en-us/advisor-user-guide) for further documentation.
+
+**Important**: Advisor is subject to the same licence limitations as vTune above.
+We suggest a similar strategy: use the CLI tools to collect data—ideally on a compute node—then run the GUI on your local machine.
 
 ### Intel MPI Trace Analyzer and Collector
 
@@ -416,10 +427,10 @@ Arm provide the Arm Forge, a collection of tools previously known as the Allinea
 They primarily target Arm platforms, but some of the tools also run on x86.
 The two main tools are DDT, a parallel debugger that support OpenMP and MPI, and MAP, a graphical profiler that aims to be both easy-to-use and feature-rich.
 
-![Arm DDT](https://static.docs.arm.com/101136/1822/images/DDTWithVersionControlInformation.png) <br />
+![Arm DDT: https://static.docs.arm.com/101136/1822/images/DDTWithVersionControlInformation.png](https://i.imgur.com/nuYmEHa.png) <br />
 _Screenshot of Arm DDT_
 
-![Arm MAP](https://static.docs.arm.com/101136/1822/images/MapOpenMpSourceCodeView.png) <br />
+![Arm MAP: https://static.docs.arm.com/101136/1822/images/MapOpenMpSourceCodeView.png](https://i.imgur.com/793DzgT.png) <br />
 _Screenshot of Arm MAP in line profiling mode_
 
 You can find more details [on the Arm Developer website](https://developer.arm.com/products/software-development-tools/hpc/arm-forge).
