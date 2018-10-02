@@ -7,7 +7,7 @@ Throughout this tutorial-style introduction to working with HPC codes, we will a
 
 - Is familiar with the C programming language.
 - Is familiar with using a [command line](https://en.wikipedia.org/wiki/Command-line_interface) in a [Linux](https://en.wikipedia.org/wiki/Linux) environment.
-Since the supercomputers used for this course are accessed _exclussively_ through a [terminal](https://en.wikipedia.org/wiki/Terminal_emulator), this is _essential_.
+Since the supercomputers used for this course are accessed _exclusively_ through a [terminal](https://en.wikipedia.org/wiki/Terminal_emulator), this is _essential_.
 This tutorial assumes that the shell used is [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)).
 - Can efficiently navigate documentation and reference material, _both_ offline, e.g. [man pages](https://en.wikipedia.org/wiki/Man_page) or language specifications, and online, e.g. discussion forums or mailing lists, in order to _independently_ find answers to questions and solve programming and system usage issues.
 
