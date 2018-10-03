@@ -14,9 +14,9 @@ From then on, everything will be virtually the same as having the package instal
 Although the implementation of the modules package itself is different between BCp3 and BCp4, there should be very few user-facing differences.
 The commands listed below apply to both phases—and virtually any other modules implementation you may come across.
 
-If you follow along, keep in mind that some of the examples below are from Phase 3 and some are from Phase 4.
-Therefore, you may see and need to use slightly different modules names.
-The [worked example](#a-worked-example) is all on Phase 3.
+If you try the examples in your terminal, keep in mind that some of the snippets below are from Phase 3 and some are from Phase 4.
+Therefore, you may see and need to use slightly different module names.
+The [worked example](#a-worked-example) is all done on Phase 3.
 
 ### Listing loaded modules
 
