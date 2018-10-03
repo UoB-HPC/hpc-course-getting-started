@@ -22,10 +22,11 @@ $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 
 ## Performance tools
 
-**Q**: What does the vTune "Amplxe-cl Cannot enable Hardware Event-based Sampling: problem with the driver" error mean? <br />
+**Q**: What does the vTune `Amplxe-cl Cannot enable Hardware Event-based Sampling: problem with the driver` error mean? <br />
 **A**: You can run the Hotspot analysis in VTune, but the more advanced analyses need an additional driver installed. Due to some (legacy) configuration issues, this is hard to set up on BCp3. If you need advanced analyses, try running vTune on your own machine.
 
 <!-- Template
 **Q**: <br />
 **A**:
 -->
+
