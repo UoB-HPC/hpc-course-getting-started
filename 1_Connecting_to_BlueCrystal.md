@@ -80,7 +80,7 @@ The key is transmitted automatically, saving you from having to type your passwo
 Note that the content of this section applies to _any remote server running Linux_, not just BlueCrystal.
 
 If you don't already have an SSH key, or if you want to use a new one for BlueCrystal, we will generate one now.
-On your local machine, go into the `.ssh` directory in your home folder (creating it if it doesn't exist) and follow the instructions to create your key:
+**On your local machine**, go into the `.ssh` directory in your home folder (creating it if it doesn't exist) and follow the instructions to create your key:
 
 ```
 $ mkdir ~/.ssh # if it doesn't exist
