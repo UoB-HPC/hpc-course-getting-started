@@ -4,6 +4,11 @@ Frequently Asked Questions
 This page contains a collection of answers to common questions.
 It is being constantly updated.
 
+## Logging into BlueCrystal Phase 3
+
+**Q** I am having trouble logging into BlueCrystal Phase 3. I've forgotten my password. etc. <br />
+**A**: Email <hpc-help@bristol.ac.uk> explaining your problem.
+
 ## Compiling and running code
 
 **Q**: I am encountering segmentation faults or bus errors, but they don't seem to happen all the time. Is it an issue with the compute nodes? <br />
