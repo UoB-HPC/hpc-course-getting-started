@@ -6,7 +6,7 @@ It is being constantly updated.
 
 ## Logging into BlueCrystal Phase 3
 
-**Q** I am having trouble logging into BlueCrystal Phase 3. I've forgotten my password. etc. <br />
+**Q**: I am having trouble logging into BlueCrystal Phase 3. I've forgotten my password. etc. <br />
 **A**: Email <hpc-help@bristol.ac.uk> explaining your problem.
 
 ## Compiling and running code
