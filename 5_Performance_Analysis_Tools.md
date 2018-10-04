@@ -67,8 +67,8 @@ There is also [plenty of documentation available online](https://perf.wiki.kerne
 
 ### gprof
 
-grpof is a GNU profiler for Linux.
-It is a command line tool that can sample your application at run time and produce a summary of where time was spent executing code.
+gprof is a GNU profiler for Linux.
+It is a command-line tool that can sample your application at run time and produce a summary of where time was spent executing code.
 It is available by default on BlueCrystal, but it can only be used with the GNU compiler.
 
 To use gprof, follow these steps:
@@ -180,6 +180,8 @@ $ valgrind --tool=cachegrind ./test
 Valgrind is already installed on BCp3 and you don't need to load any module; just run `valgrind`.
 Documentation is [available online](http://valgrind.org/docs/manual/manual.html) and there is also a [quick start guide](http://valgrind.org/docs/manual/QuickStart.html).
 See `man valgrind` for CLI usage information.
+
+On your own machine, you can install and use [KCachegrind](https://kcachegrind.github.io/html/Home.html) to graphically visualise Callgrind profiles.
 
 ### TAU
 
@@ -345,7 +347,7 @@ There is also a [page explaning the GUI](https://software.intel.com/en-us/articl
 
 ### Extrae and Paraver
 
-This is a pair of tools that often go hand-in-hand developed at the [Barcelona Supercomputing Center](https://www.bsc.es/).
+This is a pair of profiling tools that often go hand-in-hand developed at the [Barcelona Supercomputing Center](https://www.bsc.es/).
 [Extrae](https://tools.bsc.es/extrae) handles the collection stage, and its output is generally visualised using [Paraver](https://tools.bsc.es/paraver).
 
 Below is an example screenshot of Paraver from their website.
@@ -357,7 +359,7 @@ _Paraver screenshot. <https://tools.bsc.es/paraver>_
 
 ## Other notable tools
 
-The tools in this section aren't available on BlueCrystal or as free download, so you will likely not be able to use them.
+The tools in this section **aren't available on BlueCrystal or as free download, so you will likely not be able to use them**.
 However, they are important in the wider HPC context, so we mention them for completeness.
 
 ### Cray tools

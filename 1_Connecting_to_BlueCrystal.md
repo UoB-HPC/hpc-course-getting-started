@@ -189,7 +189,7 @@ $ ssh <username>@snowy.cs.bris.ac.uk
 
 If you have [set up access using an SSH key](#passwordless-ssh-access), then you can take a step further and automate connecting to snowy and from there to BlueCrystal.
 First, set up your SSH key on snowy following the same procedure you used for BlueCrystal and confirm it works, i.e. that you can connect without typing your password.
-Then, add the following `ProxyJump` line to your SSH configuration for BlueCrystal (the example assumes that you have used the alias `snowy`):
+Then, add the following `ProxyCommand` line to your SSH configuration for BlueCrystal (the example assumes that you have used the alias `snowy`):
 
 ```
 ProxyCommand ssh -q -W %h:%p snowy

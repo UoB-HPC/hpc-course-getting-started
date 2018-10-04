@@ -168,7 +168,7 @@ Currently Loaded Modulefiles:
   2) dot                   4) moab/7.2.9
 ```
 
-If you examine the `gcc` command, you will notice that it points to the (old) version packages with the operating system:
+If you examine the `gcc` command, you will notice that it points to the (old) version packaged with the operating system:
 
 ```bash
 $ gcc -v

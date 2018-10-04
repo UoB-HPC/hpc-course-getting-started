@@ -211,6 +211,10 @@ $ ./my.job
 $ bash my.job
 ```
 
+When the job is submitted, the queueing system caches a copy of the job script used.
+This means that if you change the script while the job is waiting in the queue, changes will _not_ be reflected in the job and the original version used for submission will be used.
+If you need to mke changes, you will need to cancel any existing jobs and submit new ones.
+
 #### Interactive jobs
 
 Sometimes it can be useful to be able to run commands _on a compute node_ interactively, as if you were directly connected to it.

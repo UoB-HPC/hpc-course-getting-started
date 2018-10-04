@@ -59,9 +59,9 @@ lrwxrwxrwx 1 root root 3 Apr  4  2013 /usr/bin/cc -> gcc
 
 ## General considerations
 
-When building your applications, it may be helpful to this about the following issues:
+When building your application, it may be helpful to consider the following compiler options:
 
-| Issue                                          | Relevant GCC options                           | Relevant Intel options |
+| Option                                         | Relevant GCC flags                             | Relevant Intel flags   |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------- |
 | Optimisation level                             | `-O<level>`                                    | `-O<level>`            |
 | Target platform                                | `-march=<arch>`, `-mcpu=<cpu>`, `-mtune=<cpu>` | `-x<platform>`         |
@@ -81,7 +81,7 @@ When specifying the target platform, you should be able to use `-march=native` t
 However, there are cases when the detected processor type isn't accurate.
 Be careful if the CPU you're compiling on is different than that one that will run your code.
 
-If you attempt to make use of the hardware's SIMD features, you can use the vectorisation report to check if vecotrised code has been generated.
+If you attempt to make use of the hardware's SIMD features, you can use the vectorisation report to check if vectorised code has been generated.
 The following flavours of `-fopt-info-vec-*` may be useful:
 - `-fopt-info-vec-optimized` to show where vectorisation was used
 - `-fopt-info-vec-missed` to show failed attempts to vectorise

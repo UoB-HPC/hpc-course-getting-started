@@ -3,7 +3,7 @@ MPI
 
 This section will deal with running MPI jobs on BlueCrystal Phase 3.
 It will cover the `mpirun` launcher used to execute parallel jobs and how this interacts with the [queueing system](3_Queueing_Systems.md).
-It is **not** an MPI programming tutorial.
+It is **not** an MPI programming tutorial, and it requires you to already be familiar with MPI terminology, e.g. what is a _rank_ and how it relates to threads, processes, and compute nodes.
 
 [The last part of this section](#further-reference) lists some useful documentation links.
 
@@ -17,6 +17,12 @@ You are encouraged to explore all the available options and discover any differe
 
 On BCp3, the MPI libraries are available as modules:
 
+- The latest version of Intel MPI is part of the same module as the compiler (`languages/intel-compiler-16-u2`), so you don't need to load an additional module.
+    -  However, if you want a more advanced setup, older versions are available as separate modules:
+    ```
+    intel-mpi/64/4.0.3/008
+    intel-mpi/64/4.1.0/024
+    ```
 - Open MPI built with the GNU and Intel compilers:
   ```
   openmpi/gcc/64/1.6.4
@@ -29,11 +35,6 @@ On BCp3, the MPI libraries are available as modules:
   mpich/ge/gcc/64/1.2.7
   mpich/ge/open64/64/1.2.7
   mpich2/ge/gcc/64/1.4.1p1
-  ```
-- The lastest version of Intel MPI is part of the same module as the compiler: `languages/intel-compiler-16-u2`. Older versions are available as separate modules:
-  ```
-  intel-mpi/64/4.0.3/008
-  intel-mpi/64/4.1.0/024
   ```
 
 If you require features that are only available in newer versions of Open MPI or MPICH, you can build from source.
