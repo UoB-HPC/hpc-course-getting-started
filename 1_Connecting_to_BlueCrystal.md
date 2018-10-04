@@ -46,6 +46,10 @@ After you type your password, you should get a prompt showing your username and 
 [ab12345@newblue2 ~]$
 ```
 
+**Note**: There are _four_ login nodes on BCp3: `newblue[1-4]`.
+You will not always get assigned to the same one for load balancing reasons, but all the nodes are the same and share the file system.
+This means that when you log in, the hostname you see may end in a different digit than in the examples below—as long as it starts with `newblue`, you're on the right system!
+
 For BCp4, only the hostname is different:
 
 ```
@@ -65,6 +69,13 @@ If you want to run a program that has a GUI, you need to enable X forwarding:
 $ ssh -X <username>@bluecrystalp3.bris.ac.uk
 ```
 
+You can test it works by running a program with a graphical interface, for example:
+
+```bash
+$ gedit
+```
+
+You should see a text editor window (running on BlueCrystal) on your screen.
 If you get a `Can't open display error`, then you have not used `-X`.
 You will need to log out and log back in using the forwarding option.
 If you _can_ start GUI programs but parts of the interface are missing, try logging out and using the trusted forwarding option instead:
@@ -119,10 +130,18 @@ $ ssh ab12345@bluecrystalp3.bris.ac.uk
 [ab12345@newblue2 ~]$ chmod 644 .ssh/authorized_keys
 ```
 
-Then, coming back to your local machine, upload your public key to the `.ssh` folder on BlueCrystal (make sure you don't upload your private key by mistake!):
+Then, coming back to your local machine, upload your public key to the `.ssh` folder on BlueCrystal (make sure you don't upload your private key by mistake!) and add it to `authorized_keys`:
 
 ```bash
-$ cat .ssh/uob.pub | ssh ab12345@bluecrystalp3.bris.ac.uk 'cat >> .ssh/authorized_keys'
+$ scp uob.pub ab12345@bluecrystalp3.bris.ac.uk:.ssh/
+$ ssh ab12345@bluecrystalp3.bris.ac.uk
+[ab12345@newblue2 ~]$ cat .ssh/uob.pub >> .ssh/authorized_keys
+```
+
+You can also do all this in a single command _from your own machine_:
+
+```bash
+$ cat ~/.ssh/uob.pub | ssh ab12345@bluecrystalp3.bris.ac.uk 'cat >> .ssh/authorized_keys'
 ```
 
 Finally, configure SSH to use the key.
