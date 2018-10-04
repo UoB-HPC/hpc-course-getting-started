@@ -5,6 +5,8 @@ This section will deal with running MPI jobs on BlueCrystal Phase 3.
 It will cover the `mpirun` launcher used to execute parallel jobs and how this interacts with the [queueing system](3_Queueing_Systems.md).
 It is **not** an MPI programming tutorial.
 
+[The last part of this section](#further-reference) lists some useful documentation links.
+
 ## MPI Implementations
 
 When compiling MPI programs, you will need to choose an MPI implementation.
@@ -184,3 +186,21 @@ Hello from rank 3, on compute092.
 
 There are many more options available, and they are all explained in the manuals.
 As above, the options may slightly differ with the implementation use.
+
+## Further reference
+
+Here are some handy links to MPI docs:
+
+- Open MPI
+    - [v3.1](https://www.open-mpi.org/doc/v3.1/) (latest version)
+    - [v2.1](https://www.open-mpi.org/doc/v2.1/) (on BCp3)
+    - [v1.6](https://www.open-mpi.org/doc/v1.6/) (on BCp3)
+- [Intel MPI guides](https://software.intel.com/en-us/mpi-developer-guide-linux)
+- MPICH
+    - [Installation guide](http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1-installguide.pdf)
+    - [User guide](http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1-userguide.pdf)
+    - [Latest manpages](http://www.mpich.org/static/docs/latest/www/)
+    - [Older manpages](http://www.mpich.org/documentation/manpages/)
+
+You can find some MPI programming tutorials [on the MPICH guides page](http://www.mpich.org/documentation/guides/).
+The MPI standard spec is also [available online](https://www.mpi-forum.org/docs/).
