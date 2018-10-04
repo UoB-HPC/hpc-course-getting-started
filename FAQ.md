@@ -4,10 +4,16 @@ Frequently Asked Questions
 This page contains a collection of answers to common questions.
 It is being constantly updated.
 
-## Logging into BlueCrystal Phase 3
+## Logging into BlueCrystal
 
-**Q**: I am having trouble logging into BlueCrystal Phase 3. I've forgotten my password. etc. <br />
+**Q**: I am having trouble logging into BlueCrystal, I've forgotten my password, etc. What should I do? <br />
 **A**: Email <hpc-help@bristol.ac.uk> explaining your problem.
+
+**Q**: I've think I've set up an SSH key, but I am still being asked for my password. What could have gone wrong? <br />
+**A**: It's likely that you either 1) haven't placed your public key in `authorized_keys` on BlueCrystal, 2) you have not set `0644` permissions on `authorized_keys`, or 3) you haven't set your `.ssh/config` to use the right username and key file. Try following the manual steps again to make sure everything is there.
+
+**Q**: I have not used Linux much before and I don't know many commands, or I don't know which terminal editor to use and how it works. What should I do? <br />
+**A**: There are plenty of resources online explaining your options and how to use them. For CLI text editors, a few options are suggested in [the _Connecting_ section](1_Connecting_to_BlueCrystal#editing-files-remotely), and all of them have manpages, a large userbase, and plenty of documentation online.
 
 ## Compiling and running code
 
@@ -24,6 +30,9 @@ It is being constantly updated.
 ```
 $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 ```
+
+**Q**: When I try to submit a job using `qsub`, I get the following error message: `qsub:  file must be an ascii script`. What am I doing wrong? <br />
+**A**: You are trying to pass an application binary directly to `qsub`, which it doesn't allow. You need to write a [job script](3_Queueing_Systems.md#job-files). There is a note about this in the [previous part](3_Queueing_Systems.md#submitting-jobs).
 
 ## Performance tools
 

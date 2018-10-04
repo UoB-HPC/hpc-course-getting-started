@@ -116,7 +116,7 @@ This is done using the following syntax:
 $ qsub <options> /path/to/script
 ```
 
-**Note**: `qsub` will only accept shell scripts, so you can't run your application's binary directly.
+**Note**: `qsub` will _only_ accept shell scripts, so you _can't run your application's binary directly_.
 
 The following table lists a few common job control options:
 
