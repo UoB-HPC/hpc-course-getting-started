@@ -41,7 +41,7 @@ Job ID                    Name             User            Time Use S Queue
 # Many lines omitted...
 ```
 
-Note that the `S` column show the _state_ of the jobs: `H`eld, `Q`ueued, `R`unning, `C`ompleted, `E`rrored.
+Note that the `S` column show the _state_ of the jobs: `H`eld, `Q`ueued, `R`unning, `E`nding, `C`ompleted.
 
 There are many options that can be given to `qstat` to filter and organise output.
 For example, a system can have _multiple queues_, which are often organised by the type of the hardware contained or the maximum amount of resources that can be requested.
