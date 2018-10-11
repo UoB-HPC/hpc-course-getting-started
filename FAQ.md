@@ -17,6 +17,12 @@ It is being constantly updated.
 
 ## Compiling and running code
 
+**Q**: Can I access GitHub from BlueCrystal, or do I need to pull my repository locally and upload it manually?
+**A**: You can access any online resource _from inside BC_; what you can't do is get _into BC_ from outside the University's network. Load the `tools/git-2.18.0` module and clone your repository directly on BlueCrystal.
+
+**Q**: I have changed my Makefile, but typing `make` doesn't run the updated commands. What do I need to do?
+**A**: Make will only recompile if _source files_ have changed, not Makefiles themselves. You can ask it to rebuild anyway with a flag: `make -B`.
+
 **Q**: I am encountering segmentation faults or bus errors, but they don't seem to happen all the time. Is it an issue with the compute nodes? <br />
 **A**: These errors [generally mean you have attempted to access invalid memory locations](https://stackoverflow.com/questions/212466/what-is-a-bus-error), e.g. outside your program's memory space. If you have a parallel program, they may depend on the order of execution of some statements, which can be non-deterministic. Try using Valgrind to check for memory access issues and see if you can reproduce the problem with a single process/thread.
 
@@ -25,7 +31,7 @@ It is being constantly updated.
 
 ## The queueing system
 
-**Q**: When I try to submit a job, there is no output and I get a `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)` error. What went wrong? <br />
+**Q**: When I try to submit a job, there is no job output file and I get a `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)` error in my UNIX mail. What went wrong? <br />
 **A**: This normally happens when your `authorized_keys` file has been damaged. Try running the following command, then attempt your job again:
 ```
 $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
