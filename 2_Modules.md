@@ -149,7 +149,7 @@ If you use bash, you can use your `.bashrc` file for this (more information on `
 
 ```bash
 $ grep module .bashrc
-module load tools/git
+module load tools/git-2.18.0
 ```
 
 If you use this method, _you_ are responsible for any issues you create with different library versions.
