@@ -32,7 +32,7 @@ It is being constantly updated.
 ## The queueing system
 
 **Q**: When I try to submit a job, there is no job output file and I get a `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)` error in my UNIX mail. What went wrong? <br />
-**A**: This normally happens when your `authorized_keys` file has been damaged. Try running the following command, then attempt your job again:
+**A**: This normally happens when your `authorized_keys` file has been damaged. Try running the following command (note that there are _two_ angle brackets, _not one_!), then attempt your job again:
 ```
 $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 ```

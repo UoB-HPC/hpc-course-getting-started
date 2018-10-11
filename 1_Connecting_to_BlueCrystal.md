@@ -144,6 +144,10 @@ You can also do all this in a single command _from your own machine_:
 $ cat ~/.ssh/uob.pub | ssh ab12345@bluecrystalp3.bris.ac.uk 'cat >> .ssh/authorized_keys'
 ```
 
+**Note**: Make sure you use **two** angle brackets (`>>`), **not one** (`>`), since you want to _append_ to `authorized_keys`, not _overwrite_.
+If you accidentally overwrite this file, your jobs will fail to create the output file and it will appear as if there is no output.
+To fix this, read the answer under [_The queueing system_ in the FAQ](https://github.com/UoB-HPC/hpc-course-getting-started/blob/master/FAQ.md#the-queueing-system).
+
 Finally, configure SSH to use the key.
 To do this, open the `~/.ssh/config` file (creating if it does not exist) and add a configuration for BlueCrystal:
 
