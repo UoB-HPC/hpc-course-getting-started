@@ -78,7 +78,7 @@ $ gedit
 You should see a text editor window (running on BlueCrystal) on your screen.
 If you get a `Can't open display error`, then you have not used `-X`.
 You will need to log out and log back in using the forwarding option.
-If you _can_ start GUI programs but parts of the interface are missing, try logging out and using the trusted forwarding option instead:
+If you get a warning message about failing to enable _untrusted_ SSH X forwarding when you log in, or if you _can_ start GUI programs but parts of the interface are missing, try logging out and using the trusted forwarding option instead:
 
 ```
 $ ssh -Y <username>@bluecrystalp3.bris.ac.uk
