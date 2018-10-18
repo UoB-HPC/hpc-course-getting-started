@@ -26,8 +26,8 @@ It is being constantly updated.
 **Q**: I am encountering segmentation faults or bus errors, but they don't seem to happen all the time. Is it an issue with the compute nodes? <br />
 **A**: These errors [generally mean you have attempted to access invalid memory locations](https://stackoverflow.com/questions/212466/what-is-a-bus-error), e.g. outside your program's memory space. If you have a parallel program, they may depend on the order of execution of some statements, which can be non-deterministic. Try using Valgrind to check for memory access issues and see if you can reproduce the problem with a single process/thread.
 
-**Q**: When compiling with ICC, I get a `could not set locale` error. What does this mean? <br />
-**A**: Read <https://software.intel.com/en-us/articles/cdiag912>.
+**Q**: When compiling with ICC, I get a `Catastrophic error: could not set locale "" to allow processing of multibyte characters` error. What does this mean? <br />
+**A**: Read <https://software.intel.com/en-us/articles/cdiag912>. In particular, you need to `export LANG=C LC_ALL=C`; you will need to add this to your `.bashrc`, so that it's automatically done every time you log in.
 
 ## The queueing system
 
