@@ -188,6 +188,10 @@ Hello from rank 3, on compute092.
 There are many more options available, and they are all explained in the manuals.
 As above, the options may slightly differ with the implementation use.
 
+## MPI examples
+
+We have provided a [set of working MPI examples](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples), ranging from a simple ["Hello World" MPI program](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example1) to the kinds of ['halo exchange' message passing pattern](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example11) you need for the MPI assignment.
+
 ## Further reference
 
 Here are some handy links to MPI docs:
