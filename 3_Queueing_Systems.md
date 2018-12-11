@@ -18,7 +18,7 @@ Typical workflow with a WLM can be summarised as follows:
 6. When the job is done, its resources are freed so they can be used for other jobs.
 
 BlueCrystal uses **PBS** on Phase 3 and **SLURM** on Phase 4.
-The two are very similar, although commands and parameters are named differently.
+The two are very similar, although commands and parameters are named differently, and there is an [important difference regarding how they preserve environment variables by default](#environment-modules-and-queueing-systems) of which you need to be aware.
 The following sections show commonly used options for each system.
 
 ## BCp3 – PBS
