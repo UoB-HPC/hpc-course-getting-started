@@ -12,8 +12,6 @@ This repository aims to serve both as introductory material for the course labs 
 When reading this material for the first time, we suggest that you follow the ordering presented in the [section below](#suggested-reading-order) and try the commands and code yourself.
 However, each page aims to be self-contained and cover its topic without relying on a specific reading order.
 
-<!-- TODO: Insert links everywhere in this section -->
-
 ### Suggested reading order
 
 If you are unfamiliar with HPC systems, it's worth covering the basics of connecting to and using as supercomputer before moving on to programming tools.
@@ -26,10 +24,10 @@ We suggest you go through this tutorial as follows:
 4. [HPC Compilers](4_Compilers.md)
 5. [Performance Analysis Tools](5_Performance_Analysis_Tools.md)
 6. [MPI](6_MPI.md)
-7. OpenMP<sup>†</sup>
-8. Case Study: Jacobi Code Optimisation
+7. [OpenMP<sup>†</sup>](7_OpenMP.md)
 
-<!-- TODO: Advanced HPC–specific pages -->
+<!-- TODO: OpenCL? -->
+<!-- TODO: If we switch to BCp4, add SLURM instructions and update modules names -->
 
 Note that this is not required reading _per se_.
 The purpose of this tutorial is to help you get started with your assignment, but as long as you acquire the necessary skills to complete the unit, feel free to skip sections or use any alternative or additional material.
