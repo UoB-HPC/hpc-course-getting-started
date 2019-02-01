@@ -25,8 +25,8 @@ We suggest you go through this tutorial as follows:
 5. [Performance Analysis Tools](5_Performance_Analysis_Tools.md)
 6. [MPI](6_MPI.md)
 7. [OpenMP<sup>†</sup>](7_OpenMP.md)
+7. [OpenCL<sup>†</sup>](8_OpenCL.md)
 
-<!-- TODO: OpenCL? -->
 <!-- TODO: If we switch to BCp4, add SLURM instructions and update modules names -->
 
 Note that this is not required reading _per se_.

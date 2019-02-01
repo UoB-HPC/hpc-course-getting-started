@@ -4,6 +4,8 @@ This section discusses compiling and running OpenMP programs on BlueCrystal Phas
 As you will find, and unlike with [MPI](../6_MPI.md), there is almost no difference compared to when dealing with serial problems.
 Still, there are a number of issues that you should be aware of and hints worth remembering.
 
+Note that this is **not** an OpenMP programming tutorial.
+
 ## OpenMP implementations
 
 OpenMP libraries are implemented by and shipped with all the compilers available on BCp3.
