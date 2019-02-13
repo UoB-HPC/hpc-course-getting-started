@@ -220,7 +220,7 @@ If you need to mke changes, you will need to cancel any existing jobs and submit
 Sometimes it can be useful to be able to run commands _on a compute node_ interactively, as if you were directly connected to it.
 You can do this through an _interactive job_, for which you can ask with `qsub -I`.
 You can use other `qsub` arguments to select your resources, e.g. as above.
-When the job begins, you will be give a shell on one of the compute nodes allocated to your job (which will reflect in you shell prompt changing), and commands you type there will run directly on the node.
+When the job begins, you will be given a shell on one of the compute nodes allocated to your job (which will reflect in your shell prompt changing), and commands you type there will run directly on the node.
 To finish your job, simply `exit` from your shell.
 The following is an example of using an interactive job:
 
@@ -241,7 +241,7 @@ qsub: job 7456439.master.cm.cluster completed
 Now back to the login node.
 ```
 
-Please note that using an interactive session will keep the node(s) requested allocated _for the whole session_, not just when you are actively running commands.
+Please note that using an interactive session will mark the node(s) you request as allocated _for the whole session_, not just when you are actively running commands.
 Since all the resources are shared with the other users on the system, **only use an interactive job for tasks that you cannot do on a login node or through job scripts, and give up your allocation as soon as you have finished**.
 
 ### More resources
