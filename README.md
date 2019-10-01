@@ -48,7 +48,7 @@ In the past, we have used various content that you may find useful throughout th
 - [OpenMP Tutorial Videos by Tim Mattson @ Intel](https://www.youtube.com/watch?v=nE-xN4Bf8XI&list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG)
 - [GPU Programming Examples on GitHub](https://github.com/UoB-HPC/advanced-hpc-examples) (likely relevant for Advanced HPC only)
 
-In addition, there are many books and links to online resoures [on the units' BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/content/listContent.jsp?course_id=_231297_1&content_id=_3306995_1&mode=reset).
+In addition, there are many books and links to online resources [on the units' BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/execute/announcement?method=search&context=course&course_id=_237249_1&handle=cp_announcements&mode=cpview).
 
 ----
 

@@ -18,7 +18,8 @@ It also does not aim to:
 
 - Give a complete course on any of the programming languages and frameworks discussed
 - Provide a "walkthrough" for the coursework
-- Explain how to write a good report (although this will be covered in class)
+    - In particular, copy-pasting all the commands into your terminal will not get you closer to the goals of this unit. **Do not** type anything into a terminal until you've understood exactly what it does and why it is useful to you.
+- Explain how to write a good report (although this will be covered later in class)
 - Replace engagement in labs, including any feedback, suggestions, and clarifications
 - Deter students from taking novel approaches or in any way limit their use of technologies not discussed in these pages
     - For example, even though this repository shows sample code in C, feel free to write Fortran!
