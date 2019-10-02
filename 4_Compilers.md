@@ -4,36 +4,35 @@ Compilers generate machine code from source program code.
 If a compiler is able to optimise better for the target platform, then the application will run faster.
 
 The compilers most commonly used in HPC on x86 are [the GNU Compiler](https://www.gnu.org/software/gcc/) and [the Intel Compiler](https://software.intel.com/en-us/intel-compilers/).
-They are both available on BCp3, as well as BCp4.
-There is no easy way to tell which compiler will be faster, as this can vary greatly depending on the code and the setting used to compile the application.
-In general, you should try all the options and see which works better in your case.
+They are both available on BlueCrystal.
+There is no reliable way to tell which compiler will be faster _a priori_, as this can vary greatly depending on the code and the settings used to compile the application.
+In general, you should try all the options and see which works better for your particular case.
 If there are several versions of the same compiler, it makes sense to use the latest one, although there may be cases where an older version is faster, i.e. performance regressions.
 
-The remainder of this section assumes you are working on BCp3.
-If you are on Phase 4, some module names will likely be different.
+The remainder of this section assumes you are working on BCp4.
+If you are on Phase 3, some module names will likely be different.
 
 ## Compiler modules
 
-On BCp3, the GCC modules are named `languages/gcc-<version>`:
+On BCp4, the GCC modules are named `languages/gcc/<version>`:
 
 ```
 $ module av languages/gcc
 
----------------------------------------------------------------------- /cm/shared/modulefiles ----------------------------------------------------------------------
-languages/gcc-4.6.1 languages/gcc-4.7   languages/gcc-4.8.4 languages/gcc-4.9.1 languages/gcc-5.1   languages/gcc-6.1
-languages/gcc-4.6.4 languages/gcc-4.8.1 languages/gcc-4.8.5 languages/gcc-5.0   languages/gcc-5.3   languages/gcc-7.1.0
+-------------------------------------------------------------- /mnt/storage/easybuild/modules/local ---------------------------------------------------------------
+   languages/gcc/7.2.0 languages/gcc/8.2.0  languages/gcc/9.1.0
 ```
 
-Similarly, Intel Compiler modules are names `languages/intel-compiler-<version>`:
+Similarly, Intel Compiler modules are names `languages/intel/<version>`:
 
 ```
-$ module av languages/intel-compiler
+$ module av languages/intel
 
----------------------------------------------------------------------- /cm/shared/modulefiles ----------------------------------------------------------------------
-languages/intel-compiler-13               languages/intel-compiler-15-impi          languages/intel-compiler-15-update-3
-languages/intel-compiler-13-impi          languages/intel-compiler-15-impi-update-2 languages/intel-compiler-16
-languages/intel-compiler-14               languages/intel-compiler-15-impi-update-3 languages/intel-compiler-16-u2
-languages/intel-compiler-15               languages/intel-compiler-15-update-2
+-------------------------------------------------------------- /mnt/storage/easybuild/modules/local ---------------------------------------------------------------
+   languages/intel/2016-u3-cuda-8.0    languages/intel/2017.01    languages/intel/2018-u3 (D)
+
+  Where:
+   D:  Default Module
 ```
 
 Load the module for the desired compiler and version before building your application.
@@ -43,18 +42,18 @@ However, note that this version is significantly older than what is available th
 
 ```
 $ gcc -v
-gcc version 4.4.7 20120313 (Red Hat 4.4.7-3) (GCC)
-$ module load languages/gcc-7.1.0
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)
+$ module load languages/gcc/9.1.0
 $ gcc -v
-gcc version 7.1.0 (GCC)
+gcc version 9.1.0 (GCC)
 ```
 
 Also note that the alias `cc` refers to the system's default compiler.
-This is _not a different compiler_, just a command alias:
+This is _not a different compiler_; it's just a command alias:
 
 ```
 $ ls -l $(which cc)
-lrwxrwxrwx 1 root root 3 Apr  4  2013 /usr/bin/cc -> gcc
+lrwxrwxrwx 1 root root 3 Mar 21  2017 /usr/bin/cc -> gcc
 ```
 
 ## General considerations
@@ -66,7 +65,8 @@ When building your application, it may be helpful to consider the following comp
 | Optimisation level                             | `-O<level>`                                    | `-O<level>`            |
 | Target platform                                | `-march=<arch>`, `-mcpu=<cpu>`, `-mtune=<cpu>` | `-x<platform>`         |
 | Fast (potentially unsafe!) maths optimisations | `-ffast-math`, `-funsafe-math-optimizations `  | `-fast`                |
-| Vectorisation reports                          | `-fopt-info-vec-<level>` | `-qopt-report=<level> -qopt-report-phase=vec` |
+| General optimisation reports                   | `-fopt-info-<kind>` | `-qopt-report=<level>`  |
+| Vectorisation reports                          | `-fopt-info-vec-<kind>` | `-qopt-report=<level> -qopt-report-phase=vec` |
 
 The following sections discuss some GCC- and Intel-specific options.
 
@@ -99,10 +99,11 @@ test.c:39:5: note: Unknown def-use cycle pattern.
 However, not that these report contain merged reports from several optimisation passes, so it is possible to have _some_ passes fail but still obtain SIMD code in the end.
 
 If you get no vectorisation report output, try using the legacy flag instead: `-ftree-vectorizer-verbose=<level>`, where level 5 is as good place to start.
+You can also show _all_ optimisation reports, i.e. not just from the vectorizer, by omitting `vec` from the flag above: `-fopt-info-[all|missed|optimized]`.
 
 ## Compiling with Intel
 
-Virtually all the options of the Intel compiler, including flags, pragmas and intrinsics, can be found [here](https://software.intel.com/en-us/cpp-compiler-18.0-developer-guide-and-reference).
+Virtually all the options of the Intel compiler, including flags, pragmas, and intrinsics, can be found [here](https://software.intel.com/en-us/cpp-compiler-18.0-developer-guide-and-reference).
 
 You can use `-xHOST` to optimise for the platform you are compiling on.
 As with GCC, consider that this may not always work as expected.

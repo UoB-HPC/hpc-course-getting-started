@@ -18,7 +18,7 @@ It is being constantly updated.
 ## Compiling and running code
 
 **Q**: Can I access GitHub from BlueCrystal, or do I need to pull my repository locally and upload it manually?
-**A**: You can access any online resource _from inside BC_; what you can't do is get _into BC_ from outside the University's network. Load the `tools/git-2.18.0` module and clone your repository directly on BlueCrystal.
+**A**: You can access any online resource _from inside BC_; what you can't do is get _into BC_ from outside the University's network. Load the `tools/git/2.18.0` module and clone your repository directly on BlueCrystal.
 
 **Q**: I have changed my Makefile, but typing `make` doesn't run the updated commands. What do I need to do?
 **A**: Make will only recompile if _source files_ have changed, not Makefiles themselves. You can ask it to rebuild anyway with a flag: `make -B`.
@@ -44,6 +44,11 @@ $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 
 **Q**: What does the vTune `Amplxe-cl Cannot enable Hardware Event-based Sampling: problem with the driver` error mean? <br />
 **A**: You can run the Hotspot analysis in VTune, but the more advanced analyses need an additional driver installed. Due to some (legacy) configuration issues, this is hard to set up on BCp3. If you need advanced analyses, try running vTune on your own machine.
+
+## Other system tools
+
+**Q**: When I try to push/pull from a remote git repository on BCp4, I get an SSL library error. What am I doing wrong? <br />
+**A**: There seem to be intermittent issues with git on Phase 4 if you have Intel modules loaded. Log out completely, log back in, then attempt your git operations again _without loading any Intel module_.
 
 <!-- Template
 **Q**: <br />

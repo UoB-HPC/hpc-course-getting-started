@@ -1,7 +1,7 @@
 MPI
 ===
 
-This section will deal with running MPI jobs on BlueCrystal Phase 3.
+This section will deal with running MPI jobs on BlueCrystal.
 It will cover the `mpirun` launcher used to execute parallel jobs and how this interacts with the [queueing system](3_Queueing_Systems.md).
 It is **not** an MPI programming tutorial, and it requires you to already be familiar with MPI terminology, e.g. what is a _rank_ and how it relates to threads, processes, and compute nodes.
 
@@ -11,11 +11,13 @@ It is **not** an MPI programming tutorial, and it requires you to already be fam
 
 When compiling MPI programs, you will need to choose an MPI implementation.
 The most common choices are [Open MPI](https://www.open-mpi.org/), [MPICH](http://www.mpich.org/), and [Intel MPI](https://software.intel.com/en-us/mpi-library).
-The first two are open-source libraries which you can install on your own machine, and all three are available on BCp3.
+The first two are open-source libraries which you can install on your own machine, and all three are available on BlueCrystal.
 While feature-wise they should be largely equivalent, some options may differ in name and performance might vary.
 You are encouraged to explore all the available options and discover any differences on your own.
 
-On BCp3, the MPI libraries are available as modules:
+### BCp3
+
+On Phase 3, three MPI implementations are available as modules:
 
 - The latest version of Intel MPI is part of the same module as the compiler (`languages/intel-compiler-16-u2`), so you don't need to load an additional module.
     -  However, if you want a more advanced setup, older versions are available as separate modules:
@@ -39,6 +41,11 @@ On BCp3, the MPI libraries are available as modules:
 
 If you require features that are only available in newer versions of Open MPI or MPICH, you can build from source.
 
+### BCp4
+
+On Phase 4, use the Intel MPI.
+It is part of the compiler modules, e.g. `languages/intel/2018-u3`.
+
 ## Compiling MPI programs
 
 The choice of MPI library is (mostly) independent of the compiler choice.
@@ -59,7 +66,7 @@ For the open-source libraries, commands are usually named as follows:
 | Fortran  | `mpif90` |
 
 If you use Intel software, the commands above will use Intel _MPI_ with the GNU compilers.
-If you want to use _both_ Intel MPI and Compiler, the commands are named by joining `mpi` with the normal Intel Compiler command:
+If you want to use _both_ Intel MPI and Compilers, the commands are named by joining `mpi` with the normal Intel Compiler command:
 
 | Language | Command    |
 | -------- | ---------- |
@@ -190,14 +197,14 @@ As above, the options may slightly differ with the implementation use.
 
 ## MPI examples
 
-We have provided a [set of working MPI examples](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples), ranging from a simple ["Hello World" MPI program](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example1) to the kinds of ['halo exchange' message passing pattern](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example11) you need for the MPI assignment.
+We have provided a [set of working MPI examples](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples), ranging from a simple ["Hello World" MPI program](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example1) to an implementation of [the "halo exchange" message passing pattern](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example11) you need for the MPI assignment.
 
 ## Further reference
 
 Here are some handy links to MPI docs:
 
 - Open MPI
-    - [v3.1](https://www.open-mpi.org/doc/v3.1/) (latest version)
+    - [v3.1](https://www.open-mpi.org/doc/v3.1/) (a recent, supported version)
     - [v2.1](https://www.open-mpi.org/doc/v2.1/) (on BCp3)
     - [v1.6](https://www.open-mpi.org/doc/v1.6/) (on BCp3)
 - [Intel MPI guides](https://software.intel.com/en-us/mpi-developer-guide-linux)

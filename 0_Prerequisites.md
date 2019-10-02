@@ -41,7 +41,7 @@ If you want to be able to compile and run your code locally you will need a comp
 Although this is _not strictly required_, it may ease and speed up debugging and correctness testing.
 For C, both [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection) and [LLVM/Clang](https://llvm.org/) are available for virtually all Linux distributions and support OpenMP.
 As as student, you can also get access to a copy of [the Intel Compiler](https://software.intel.com/en-us/parallel-studio-xe/choose-download/student-linux-fortran).
-To compile MPI programs, you will need to install an MPI implementation, with the most common choices being [OpenMPI](https://www.open-mpi.org/) and [MPICH](http://www.mpich.org/); it does not matter which one you choose, but make sure you are not following the documentation for the other choice!
+To compile MPI programs, you will need to install an MPI implementation, with the most common choices being [Open MPI](https://www.open-mpi.org/) and [MPICH](http://www.mpich.org/); it does not matter which one you choose, but make sure you are not following the documentation for the other choice!
 
 To transfer files between your machine and the supercomputer, you can use `scp`, which is part of OpenSSH and likely already available on your Linux box. There is also [rsync](https://en.wikipedia.org/wiki/Rsync), which may speed up repeated trasnfers.
 However, manually transferring files every time you make a change is cumbersome, so a better alternative is to set up [SSHFS](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh) to mount a remote directory as a virtual drive on your local machine.

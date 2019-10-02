@@ -37,7 +37,7 @@ Items marked with † cover advanced topics and may exceed the scope of the Intr
 ### FAQs
 
 In addition to the reference pages, we are collecting answers to common questions in [a dedicated FAQ page](FAQ.md).
-If you encounter a problem, it's worth checking if there isn't already a solution to it!
+If you encounter a problem, please check this page before asking a question to see if an answer isn't already available.
 
 ## Additional Material
 
@@ -48,7 +48,7 @@ In the past, we have used various content that you may find useful throughout th
 - [OpenMP Tutorial Videos by Tim Mattson @ Intel](https://www.youtube.com/watch?v=nE-xN4Bf8XI&list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG)
 - [GPU Programming Examples on GitHub](https://github.com/UoB-HPC/advanced-hpc-examples) (likely relevant for Advanced HPC only)
 
-In addition, there are many books and links to online resources [on the units' BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/execute/announcement?method=search&context=course&course_id=_237249_1&handle=cp_announcements&mode=cpview).
+In addition, there are many books and links to online resources [on the unit's BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/execute/announcement?method=search&context=course&course_id=_237249_1&handle=cp_announcements&mode=cpview).
 
 ----
 
