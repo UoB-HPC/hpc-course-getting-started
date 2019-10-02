@@ -29,6 +29,9 @@ It is being constantly updated.
 **Q**: When compiling with ICC, I get a `Catastrophic error: could not set locale "" to allow processing of multibyte characters` error. What does this mean? <br />
 **A**: Read <https://software.intel.com/en-us/articles/cdiag912>. In particular, you need to `export LANG=C LC_ALL=C`; you will need to add this to your `.bashrc`, so that it's automatically done every time you log in.
 
+**Q**: On Phase 4, why does my application crash under `mpirun`? <br />
+**A**: While the reason could be down to a bug in _your application_, you should use `srun` as your parallel launcher, and not `mpirun`. Make sure to `export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so` _before_ you run your application.
+
 ## The queueing system
 
 **Q**: When I try to submit a job, there is no job output file and I get a `Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password)` error in my UNIX mail. What went wrong? <br />

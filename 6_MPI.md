@@ -125,6 +125,28 @@ Make sure that you look at right documentation for the version of the library yo
 **Important**: In order to run more than a single MPI rank, you _need to_ use a launcher.
 If you don't—and just run your binary directly—only a single instance will run, so any MPI code will be redundant.
 
+### SLURM and BCp4
+
+SLURM provides its own parallel launcher, called `srun`.
+The degree to which this integrates with the available hardware and software varies, but in general you can replace `mpirun` run with `srun` and expect everything to work fine.
+Some SLURM systems, e.g. CS-series Crays, don't provide `mpirun` and _require_ you to use `srun`.
+
+The advantage of using `srun` is that it automatically reads your run configuration from your job script, so you usually don't need to specify any additional parameters.
+The following example script, which only uses `sbatch` arguments and passes just the binary to `srun`, runs 8 MPI processes evenly split between two nodes:
+
+```bash
+#SBATCH --nodes 2
+#SBATCH --ntasks-per-node 4
+
+srun ./test-mpi
+```
+
+On BCp4, you can use both `mpirun` and `srun`.
+We recommend using `srun`, because your parallel configuration will be automatically read from your job script, so you won't have to repeat it in `mpirun` arguments.
+
+**Important**: If you decide to use `srun`, you will need to add `export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so` to your job script _before_ your `srun` line(s).
+There is a configuration issue with causes Intel MPI to crash if used under `srun` without setting this environment variable first.
+
 ### Tagging output
 
 One useful setting for debugging is tagging each line of output with the number of the rank that produced it.
