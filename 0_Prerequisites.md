@@ -37,8 +37,8 @@ Many editors have out-of-the-box support for the languages you will likely use t
 - [gedit](https://en.wikipedia.org/wiki/Gedit) or [Kate](https://en.wikipedia.org/wiki/Kate_(text_editor)), as your [DE](https://en.wikipedia.org/wiki/Desktop_environment)'s packaged text editor.
 - [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor)) and [Emacs](https://en.wikipedia.org/wiki/Emacs), in the terminal.
 
-If you want to be able to compile and run your code locally you will need a compiler supporting your languages and frameworks.
-Although this is _not strictly required_, it may ease and speed up debugging and correctness testing.
+If you want to be able to compile and run your code locally (i.e. on your own laptop, or on a machine in the lab), you will need a compiler supporting your languages and frameworks.
+This is _not required_, but it may ease and speed up debugging and correctness testing.
 For C, both [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection) and [LLVM/Clang](https://llvm.org/) are available for virtually all Linux distributions and support OpenMP.
 As as student, you can also get access to a copy of [the Intel Compiler](https://software.intel.com/en-us/parallel-studio-xe/choose-download/student-linux-fortran).
 To compile MPI programs, you will need to install an MPI implementation, with the most common choices being [Open MPI](https://www.open-mpi.org/) and [MPICH](http://www.mpich.org/); it does not matter which one you choose, but make sure you are not following the documentation for the other choice!
