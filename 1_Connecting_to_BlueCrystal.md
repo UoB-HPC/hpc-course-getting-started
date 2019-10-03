@@ -58,7 +58,7 @@ $ ssh <username>@bluecrystalp3.bris.ac.uk
 ```
 
 Note that you get automatically generated passwords when you sign up for an account.
-These are different between Phase 3 and Phase 4, and different again from your University account's password.
+These are different between Phase 3 and Phase 4, and might different again from your University account's password. **For 2019-20, the Phase 4 passwords are the same as your university password.**
 If you want to change the provided password, simply run `passwd` _on the system for which you want to change your password_ and follow the instructions.
 
 ### Running graphical programs
@@ -83,6 +83,15 @@ If you get a warning message about failing to enable _untrusted_ SSH X forwardin
 ```
 $ ssh -Y <username>@bc4login.acrc.bris.ac.uk
 ```
+
+On Windows machines, if you get an error which looks something like this:
+
+```
+Warning: untrusted X11 forwarding setup failed: xauth key data not generated
+```
+
+Then you aren't running X (the graphical windowing subsystem) on your local machine. To solve this problem, run Xming on your Windows machine, and enable X11 forwarding for whichever shell tool you're using (PuTTY etc). For more details on how to do this, [see this helpful IT services webpage](https://www.bristol.ac.uk//it-services/locations/fits/science/putty_xming).
+
 
 ### Passwordless SSH access
 
@@ -148,7 +157,7 @@ $ cat ~/.ssh/uob.pub | ssh ab12345@bc4login.acrc.bris.ac.uk 'cat >> .ssh/authori
 If you accidentally overwrite this file, your jobs will fail to create the output file and it will appear as if there is no output.
 To fix this, read the answer under [_The queueing system_ in the FAQ](https://github.com/UoB-HPC/hpc-course-getting-started/blob/master/FAQ.md#the-queueing-system).
 
-Finally, configure SSH to use the key.
+Finally, on your local machine, configure SSH to use the key.
 To do this, open the `~/.ssh/config` file (creating if it does not exist) and add a configuration for BlueCrystal:
 
 ```
@@ -160,7 +169,7 @@ Host bcp4
 
 The `Host` alias (`bcp4` in this case) can be set to anything you want and will be used as an identifier for this connection.
 The rest of the parameters should be self-explanatory.
-You should now be able to connect easily:
+You should now be able to connect to BlueCrystal easily from your local machine:
 
 ```bash
 $ ssh bcp4
@@ -176,7 +185,7 @@ IdentitiesOnly yes
 
 ### Connecting from outside the University
 
-If you want to connect to BlueCrystal from outside the University, you first need to somehow connect to the network.
+If you want to connect to BlueCrystal from outside the University, you first need to first connect to the University's network.
 
 Your first option is to use [the University's VPN](https://www.bris.ac.uk/it-services/advice/homeusers/uobonly/uobvpn/).
 Once you set this up and connect to it, your traffic will be tunneled to a server on the University's network.
