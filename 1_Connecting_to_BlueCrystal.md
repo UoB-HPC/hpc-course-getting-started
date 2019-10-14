@@ -192,7 +192,7 @@ Once you set this up and connect to it, your traffic will be tunneled to a serve
 From there you can access BlueCrystal (and any other University resources) as if you were connected to eduroam.
 **WARNING**: While connected to the VPN, _all your traffic will go via the University_, so make sure to disable it when you don't need it.
 
-The other option is to connect to seis, a server in the CS Department that exists specifically to enable proxy access to other systems.
+The other option is to connect to seis, a server in the University that exists specifically to enable proxy access to other systems.
 This server will not offer you an environment where you can work, but from it you can connect to BlueCrystal.
 To connect to seis, use your UoB username and password:
 
@@ -217,7 +217,7 @@ If you have followed all the steps so far, your SSH configuration file should co
 IdentitiesOnly yes
 
 Host seis
-    HostName seis.cs.bris.ac.uk
+    HostName seis.bris.ac.uk
     User ab12345
     IdentityFile ~/.ssh/uob
 
