@@ -219,7 +219,7 @@ As above, the options may slightly differ with the implementation use.
 
 ## MPI examples
 
-We have provided a [set of working MPI examples](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples), ranging from a simple ["Hello World" MPI program](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example1) to an implementation of [the "halo exchange" message passing pattern](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/examples/example11) you need for the MPI assignment.
+We have provided a [set of working MPI examples](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi), ranging from a simple ["Hello World" MPI program](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/example1) to an implementation of [the "halo exchange" message passing pattern](https://github.com/UoB-HPC/hpc-course-examples/tree/master/mpi/example5) you need for the MPI assignment.
 
 ## Further reference
 
