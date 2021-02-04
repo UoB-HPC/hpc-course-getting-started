@@ -52,11 +52,11 @@ $ squeue -u $USER
 You can also filter jobs by reservation (`-R`) or account (`-A`):
 
 ```bash
-$ squeue -R COMS30005
+$ squeue -R COSC024002
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
            2481514 veryshort     bash  ab12345  R       0:06      1 compute084
 
-$ squeue -A COMS30005
+$ squeue -A COSC024002
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
            2481514 veryshort     bash  ab12345  R       0:15      1 compute084
 ```
