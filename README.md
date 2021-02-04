@@ -23,9 +23,9 @@ We suggest you go through this tutorial as follows:
 3. [Queueing Systems](3_Queueing_Systems.md)
 4. [HPC Compilers](4_Compilers.md)
 5. [Performance Analysis Tools](5_Performance_Analysis_Tools.md)
-6. [MPI](6_MPI.md)
-7. [OpenMP<sup>†</sup>](7_OpenMP.md)
-7. [OpenCL<sup>†</sup>](8_OpenCL.md)
+6. [OpenMP](7_OpenMP.md)
+7. [MPI](6_MPI.md)
+8. [OpenCL<sup>†</sup>](8_OpenCL.md)
 
 <!-- TODO: If we switch to BCp4, add SLURM instructions and update modules names -->
 
@@ -48,7 +48,7 @@ In the past, we have used various content that you may find useful throughout th
 - [OpenMP Tutorial Videos by Tim Mattson @ Intel](https://www.youtube.com/watch?v=nE-xN4Bf8XI&list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG)
 - [GPU Programming Examples on GitHub](https://github.com/UoB-HPC/advanced-hpc-examples) (likely relevant for Advanced HPC only)
 
-In addition, there are many books and links to online resources [on the unit's BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/execute/announcement?method=search&context=course&course_id=_237249_1&handle=cp_announcements&mode=cpview).
+In addition, there are many books and links to online resources [on the unit's BlackBoard page](https://www.ole.bris.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_4566993_1&course_id=_240828_1&mode=reset).
 
 ----
 
