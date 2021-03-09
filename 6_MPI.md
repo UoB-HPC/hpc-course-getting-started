@@ -15,32 +15,6 @@ The first two are open-source libraries which you can install on your own machin
 While feature-wise they should be largely equivalent, some options may differ in name and performance might vary.
 You are encouraged to explore all the available options and discover any differences on your own.
 
-### BCp3
-
-On Phase 3, three MPI implementations are available as modules:
-
-- The latest version of Intel MPI is part of the same module as the compiler (`languages/intel-compiler-16-u2`), so you don't need to load an additional module.
-    -  However, if you want a more advanced setup, older versions are available as separate modules:
-    ```
-    intel-mpi/64/4.0.3/008
-    intel-mpi/64/4.1.0/024
-    ```
-- Open MPI built with the GNU and Intel compilers:
-  ```
-  openmpi/gcc/64/1.6.4
-  openmpi/gcc/64/1.6.5
-  openmpi/gcc/64/2.1.1
-  openmpi/intel/64/1.6.5
-  ```
-- MPICH built with GCC:
-  ```
-  mpich/ge/gcc/64/1.2.7
-  mpich/ge/open64/64/1.2.7
-  mpich2/ge/gcc/64/1.4.1p1
-  ```
-
-If you require features that are only available in newer versions of Open MPI or MPICH, you can build from source.
-
 ### BCp4
 
 On Phase 4, use the Intel MPI.
@@ -87,25 +61,29 @@ Then, run with `-v` to check what compiler and library will be used:
 
 ```
 $ mpicc -v
-mpigcc for the Intel(R) MPI Library 5.1.3 for Linux*
-Copyright(C) 2003-2015, Intel Corporation.  All rights reserved.
-...
-gcc version 7.1.0 (GCC)
-
+mpigcc for the Intel(R) MPI Library 2018 Update 3 for Linux*
+Copyright(C) 2003-2018, Intel Corporation.  All rights reserved.
+Using built-in specs.
+COLLECT_GCC=gcc
+COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/4.8.5/lto-wrapper
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-linker-hash-style=gnu --enable-languages=c,c++,objc,obj-c++,java,fortran,ada,go,lto --enable-plugin --enable-initfini-array --disable-libgcj --with-isl=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/isl-install --with-cloog=/builddir/build/BUILD/gcc-4.8.5-20150702/obj-x86_64-redhat-linux/cloog-install --enable-gnu-indirect-function --with-tune=generic --with-arch_32=x86-64 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC)
 $ mpiicc -v
-mpiicc for the Intel(R) MPI Library 5.1.3 for Linux*
-Copyright(C) 2003-2015, Intel Corporation.  All rights reserved.
-icc version 16.0.2 (gcc version 7.1.0 compatibility)
+mpiicc for the Intel(R) MPI Library 2018 Update 3 for Linux*
+Copyright(C) 2003-2018, Intel Corporation.  All rights reserved.
+icc version 18.0.3 (gcc version 4.8.5 compatibility)
 ```
 
 Once you know which wrapper to use, just replace the regular compiler command:
 
 ```bash
 # Without MPI
-$ gcc -o test-nompi test.c
+$ icc -o test-nompi test.c
 
 # With MPI
-$ mpicc -o test-mpi test.c
+$ mpiicc -o test-mpi test.c
 ```
 
 ## Running MPI jobs
