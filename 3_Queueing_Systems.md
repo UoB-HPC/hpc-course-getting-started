@@ -159,7 +159,7 @@ The following table lists a few common job control options:
 
 If you compare this to the equivalent PBS table above, note that `-j oe` and `-V` are implied on SLURM.
 
-**Important**: If you are taking the COMS30005 unit in 2019, there is a reservation set up for you on the `veryshort` partition to make sure you have a number of dedicated nodes available for the duration of the course. To use the reservation, add the following options to your job submission commands: `-p veryshort -A COMS30005 --reservation COMS30005`.
+**Important**: If you are taking the COMS30053 unit in 2023, please ensure you are using the `teach_cpu` partition along with account code `COSC028844` throughout the course. To do so, add the following options to your job submission commands: `-p teach_cpu -A COSC028844`.
 
 #### Job files
 
@@ -176,11 +176,10 @@ $ cat my.job
 #!/bin/bash
 #SBATCH --job-name LBM
 #SBATCH -o lbm.out
-#SBATCH -p veryshort
-#SBATCH -A COMS30005
-#SBATCH --reservation COMS30005
+#SBATCH -p teach_cpu
+#SBATCH -A COSC028844
 #SBATCH --nodes 1
-#SBATCH --ntasks-per-node 16
+#SBATCH --ntasks-per-node 14
 #SBATCH -t 00:05:00
 
 $HOME/work/d2q9-bgk
