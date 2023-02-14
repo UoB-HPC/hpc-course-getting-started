@@ -273,10 +273,10 @@ The GUI then provides various options to visualise the results.
 ![vTune](https://i.imgur.com/pDVFa8x.png)
 _Example of the vTune Amplifier interface_
 
-To use vTune on BCp3, load its module, then run the GUI:
+To use vTune on BCp4, load its module, then run the GUI:
 
 ```
-$ module load intel-cluster-studio/vtune/vtune-2015
+$ module load vtune/2017.1.132-GCC-5.4.0-2.26
 $ amplxe-gui &
 ```
 
@@ -307,14 +307,7 @@ This maximises the availability of the shared resources.
 [Intel Advisor](https://software.intel.com/en-us/advisor) is a performance tool that focuses on vectorisation and parallelisation of applications.
 As such, it is less comprehensive than vTune, but it can be easier to work with when vectorisation and threading is the main focus.
 
-On BCp3, Advisor is part of the latest Intel compiler module, `languages/intel-compiler-16-u2`.
-However, the commands aren't available by default and you first need to load a set of environment variables:
-
-```
-$ source /cm/shared/languages/Intel-Compiler-XE-16-U2/advisor_xe/advixe-vars.sh
-```
-
-The binaries are named similarly to those in vTune: the GUI is called `advixe-gui`, and the CLI interface is `advixe-cl`.
+On BCp4, Advisor is part of the latest Intel compiler module, `languages/intel/2020-u4`. The binaries are named similarly to those in vTune: the GUI is called `advixe-gui`, and the CLI interface is `advixe-cl`.
 
 ![Advisor table](https://i.imgur.com/HMytbaD.png) <br />
 _Screenshot of the Advisor profiler table_
