@@ -18,7 +18,7 @@ You are encouraged to explore all the available options and discover any differe
 ### BCp4
 
 On Phase 4, use the Intel MPI.
-It is part of the compiler modules, e.g. `languages/intel/2018-u3`.
+It is part of the compiler modules, e.g. `languages/intel/2020-u4`.
 
 ## Compiling MPI programs
 
@@ -109,21 +109,18 @@ SLURM provides its own parallel launcher, called `srun`.
 The degree to which this integrates with the available hardware and software varies, but in general you can replace `mpirun` run with `srun` and expect everything to work fine.
 Some SLURM systems, e.g. CS-series Crays, don't provide `mpirun` and _require_ you to use `srun`.
 
-The advantage of using `srun` is that it automatically reads your run configuration from your job script, so you usually don't need to specify any additional parameters.
+The advantage of using `srun` is that it automatically reads your run configuration from your job script, so you usually don't need to specify the number of ranks. You do however need to include the `--mpi=pmi2` argument to ensure we are using the correct version of MPI.
 The following example script, which only uses `sbatch` arguments and passes just the binary to `srun`, runs 8 MPI processes evenly split between two nodes:
 
 ```bash
 #SBATCH --nodes 2
 #SBATCH --ntasks-per-node 4
 
-srun ./test-mpi
+srun --mpi=pmi2 ./test-mpi
 ```
 
 On BCp4, you can use both `mpirun` and `srun`.
 We recommend using `srun`, because your parallel configuration will be automatically read from your job script, so you won't have to repeat it in `mpirun` arguments.
-
-**Important**: If you decide to use `srun`, you will need to add `export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so` to your job script _before_ your `srun` line(s).
-There is a configuration issue with causes Intel MPI to crash if used under `srun` without setting this environment variable first.
 
 ### Tagging output
 
