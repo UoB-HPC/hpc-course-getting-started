@@ -20,7 +20,7 @@ On BCp4, the GCC modules are named `languages/gcc/<version>`:
 $ module av languages/gcc
 
 -------------------------------------------------------------- /mnt/storage/easybuild/modules/local ---------------------------------------------------------------
-   languages/gcc/7.2.0 languages/gcc/8.2.0  languages/gcc/9.1.0
+  languages/gcc/7.5.0    languages/gcc/9.1.0    languages/gcc/9.3.0    languages/gcc/10.4.0 (D)
 ```
 
 Similarly, Intel Compiler modules are names `languages/intel/<version>`:
@@ -29,7 +29,7 @@ Similarly, Intel Compiler modules are names `languages/intel/<version>`:
 $ module av languages/intel
 
 -------------------------------------------------------------- /mnt/storage/easybuild/modules/local ---------------------------------------------------------------
-   languages/intel/2016-u3-cuda-8.0    languages/intel/2017.01    languages/intel/2018-u3 (D)
+   languages/intel/2016-u3-cuda-8.0    languages/intel/2017-u4    languages/intel/2017.01    languages/intel/2018-u3    languages/intel/2020-u4 (D)
 
   Where:
    D:  Default Module
