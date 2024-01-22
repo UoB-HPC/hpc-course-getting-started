@@ -122,6 +122,8 @@ srun --mpi=pmi2 ./test-mpi
 On BCp4, you can use both `mpirun` and `srun`.
 We recommend using `srun`, because your parallel configuration will be automatically read from your job script, so you won't have to repeat it in `mpirun` arguments.
 
+**NOTE**: As of Jan. 2024, `mpirun` does not execute jobs as expected using previous methods (described above). Please **only** use `srun` for the time being.
+
 ### Tagging output
 
 One useful setting for debugging is tagging each line of output with the number of the rank that produced it.
@@ -129,21 +131,21 @@ Since the order in which print statements will be executed across several ranks 
 
 ```
 # Without tags
-$ mpirun -np 4 ./hi
+$ srun --mpi=pmi2 ./hi
 Hello from rank 2, on node31-031.
 Hello from rank 0, on node31-031.
 Hello from rank 3, on node31-031.
 Hello from rank 1, on node31-031.
 
 # With tags
-$ mpirun -np 4 --tag-output ./hi
-[1,2]<stdout>:Hello from rank 2, on node31-031.
-[1,0]<stdout>:Hello from rank 0, on node31-031.
-[1,3]<stdout>:Hello from rank 3, on node31-031.
-[1,1]<stdout>:Hello from rank 1, on node31-031.
+$ srun --mpi=pmi2 --label ./hi
+  2: Hello from rank 2, on node31-031.
+  0: Hello from rank 0, on node31-031.
+  3: Hello from rank 3, on node31-031.
+  1: Hello from rank 1, on node31-031.
 ```
 
-The `--tag-output` option works with Open MPI; with Intel MPI, use `-l`.
+With `mpirun`, the equivalent flag is `--tag-output`. This option works with Open MPI; with Intel MPI, use `-l`.
 Other libraries likely have similar options, but they might have different names.
 
 ### Binding processes

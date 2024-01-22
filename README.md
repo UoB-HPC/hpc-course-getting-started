@@ -43,7 +43,7 @@ If you encounter a problem, please check this page before asking a question to s
 
 In the past, we have used various content that you may find useful throughout the unit. The list below is in no particular order.
 
-- [Using BlueCrystal labsheet on BlackBoard](https://www.ole.bris.ac.uk/bbcswebdav/pid-3307009-dt-content-rid-9643695_2/courses/COMS30005_2018/Open%20Access%20for%20CS/labs/intro-handout.pdf)
+<!-- - [Using BlueCrystal labsheet on BlackBoard](https://www.ole.bris.ac.uk/bbcswebdav/pid-3307009-dt-content-rid-9643695_2/courses/COMS30005_2018/Open%20Access%20for%20CS/labs/intro-handout.pdf) -->
 - [OpenMP and MPI Examples on GitHub](https://github.com/UoB-HPC/hpc-course-examples)
 - [OpenMP Tutorial Videos by Tim Mattson @ Intel](https://www.youtube.com/watch?v=nE-xN4Bf8XI&list=PLLX-Q6B8xqZ8n8bwjGdzBJ25X2utwnoEG)
 - [GPU Programming Examples on GitHub](https://github.com/UoB-HPC/advanced-hpc-examples) (likely relevant for Advanced HPC only)

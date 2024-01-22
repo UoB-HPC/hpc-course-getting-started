@@ -9,8 +9,8 @@ There is no reliable way to tell which compiler will be faster _a priori_, as th
 In general, you should try all the options and see which works better for your particular case.
 If there are several versions of the same compiler, it makes sense to use the latest one, although there may be cases where an older version is faster, i.e. performance regressions.
 
-The remainder of this section assumes you are working on BCp4.
-If you are on Phase 3, some module names will likely be different.
+<!-- The remainder of this section assumes you are working on BCp4.
+If you are on Phase 3, some module names will likely be different. -->
 
 ## Compiler modules
 
@@ -68,7 +68,7 @@ When building your application, it may be helpful to consider the following comp
 | General optimisation reports                   | `-fopt-info-<kind>` | `-qopt-report=<level>`  |
 | Vectorisation reports                          | `-fopt-info-vec-<kind>` | `-qopt-report=<level> -qopt-report-phase=vec` |
 
-The following sections discuss some GCC- and Intel-specific options.
+The following sections discuss some GCC and Intel-specific options.
 
 ## Compiling with GCC
 
@@ -129,4 +129,4 @@ If vectorisation failed, you should see a message listing a cause that prevented
 remark #15344: loop was not vectorized: vector dependence prevents vectorization
 ```
 
-Finally, Intel have a [tutorial page on using auto-vectorisation](https://software.intel.com/en-us/cpp-compiler-auto-vectorization-tutorial-tutorial-linux-and-macos-version) that you may find useful.
+Finally, Intel have a [tutorial page on using auto-vectorisation](https://www.intel.com/content/www/us/en/docs/dpcpp-cpp-compiler/developer-guide-reference/2023-1/automatic-vectorization.html) that you may find useful.

@@ -17,10 +17,10 @@ It is being constantly updated.
 
 ## Compiling and running code
 
-**Q**: Can I access GitHub from BlueCrystal, or do I need to pull my repository locally and upload it manually?
-**A**: You can access any online resource _from inside BC_; what you can't do is get _into BC_ from outside the University's network. Load the `tools/git/2.18.0` module and clone your repository directly on BlueCrystal.
+**Q**: Can I access GitHub from BlueCrystal, or do I need to pull my repository locally and upload it manually? <br />
+**A**: You can access any online resource _from inside BC_; what you can't do is get _into BC_ from outside the University's network. Load the `tools/git/2.35.1` module and clone your repository directly on BlueCrystal.
 
-**Q**: I have changed my Makefile, but typing `make` doesn't run the updated commands. What do I need to do?
+**Q**: I have changed my Makefile, but typing `make` doesn't run the updated commands. What do I need to do? <br />
 **A**: Make will only recompile if _source files_ have changed, not Makefiles themselves. You can ask it to rebuild anyway with a flag: `make -B`.
 
 **Q**: I am encountering segmentation faults or bus errors, but they don't seem to happen all the time. Is it an issue with the compute nodes? <br />
@@ -31,6 +31,8 @@ It is being constantly updated.
 
 **Q**: On Phase 4, why does my application crash under `mpirun`? <br />
 **A**: While the reason could be down to a bug in _your application_, you should use `srun` as your parallel launcher, and not `mpirun`. Make sure to `export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so` _before_ you run your application.
+
+
 
 ## The queueing system
 

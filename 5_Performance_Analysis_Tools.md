@@ -18,17 +18,17 @@ For the Intel tools, if you require anything that is not installed, [obtaining a
 
 ## Summary of tools
 
-This table shows a summary of all the tools presented below and their support on BCp3.
+This table shows a summary of all the tools presented below and their support on BCp4.
 
 | Tool       | Installed | Compatible | Usage                                                    |
 | ---------- | :-------: | :--------: | -------------------------------------------------------- |
 | perf       | ✔         | ✔          | Run `perf`                                               |
 | gprof      | ✔         | ✔          | Compile with `gcc -pg`, run `gprof`                      |
-| PAPI       | ✔         | ✔          | `module load libraries/{gnu,intel}_builds/papi-5.3.0`    |
-| Valgrind   | ✔         | ✔          | Run `valgrind`                                           |
-| TAU        | ✔         | ✔          | See `module av \|& grep -i tau-`                         |
-| vTune      | ✔         | ✔          | `module load intel-cluster-studio/vtune/vtune-2015`      |
-| Advisor    | ✔         | ✗          | `source advixe-vars.sh`, run `advixe-gui` or `advixe-cl` |
+| PAPI       | ✗         | ✔          | Install from source                                      |
+| Valgrind   | ✔         | ✔          | `module load tools/valgrind/3.15.0`                      |
+| TAU        | x         | ✔          | Install from source                                      |
+| vTune      | ✔         | ✔          | `module load VTune/2016_update3`                         |
+| Advisor    | x         | ✗          | Part of the `languages/intel/2020-u4` module             |
 | MPI Tracer | ✗         | ✗          | Install through student licence on own machine           |
 | Extrae     | ✗         | ✔          | Install from source                                      |
 
@@ -331,8 +331,8 @@ We suggest a similar strategy: use the CLI tools to collect data—ideally on a 
 When writing MPI programs, it is important that you understand your communication patterns and how this affect the performance (and correctness!) of your application.
 One tool that can help with visualising your MPI application's structure and identifying potential issues is [Intel's MPI Trace tools](https://software.intel.com/en-us/intel-trace-analyzer).
 
-![ITAC](https://software.intel.com/sites/default/files/managed/f0/b5/intel-trace-analyzer-app.png) <br />
-_Screenshot of the Intel Trace Analyzer and Collector_
+<!-- ![ITAC](https://software.intel.com/sites/default/files/managed/f0/b5/intel-trace-analyzer-app.png) <br />
+_Screenshot of the Intel Trace Analyzer and Collector_ -->
 
 To use this tool, you will need to install it on your own machine through the Intel student licence.
 Documentation is [available online](https://software.intel.com/en-us/articles/intel-trace-analyzer-and-collector-documentation), and there is a [getting started guide](https://software.intel.com/en-us/get-started-with-itac).
@@ -362,7 +362,7 @@ One of those tools is the versatile CrayPAT profiler, which can collect data for
 Another is Reveal, a code analyser that helps with extracting parallelism from serial code by identifying dependencies and suggesting potential way to get around them.
 
 Below is an example report produced by CrayPAT.
-You can read the [documentation online](https://pubs.cray.com/content/S-2474/7.0.0/cray-performance-measurement-and-analysis-tools-installation-guide/use-craypat-craypat-lite-apprentice2-or-reveal).
+You can read the [documentation online](https://support.hpe.com/hpesc/public/docDisplay?docLocale=en_US&docId=a00113914en_us&page=About_the_Cray_Performance_Measurement_and_Analysis_Tools_User_Guide.html).
 
 ```
 CrayPat/X:  Version 6.5.2 Revision ba33e9b  08/22/17 20:38:22
@@ -428,4 +428,4 @@ _Screenshot of Arm DDT_
 ![Arm MAP: https://static.docs.arm.com/101136/1822/images/MapOpenMpSourceCodeView.png](https://i.imgur.com/793DzgT.png) <br />
 _Screenshot of Arm MAP in line profiling mode_
 
-You can find more details [on the Arm Developer website](https://developer.arm.com/products/software-development-tools/hpc/arm-forge).
+You can find more details [on the Arm Developer website](https://developer.arm.com/documentation/101136/22-1-3).

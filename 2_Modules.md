@@ -15,7 +15,7 @@ Although the implementation of the modules package itself is different between B
 The commands listed below apply to both phases—and virtually any other modules implementation you may come across.
 
 If you try the examples in your terminal, keep in mind that the snippets below are from Phase 4.
-Therefore, you may see and need to use slightly different module names on Phase 3 or other systems.
+Therefore, you may see and need to use slightly different module names on other systems.
 
 ### Listing loaded modules
 
@@ -223,7 +223,7 @@ Loading the `languages/gcc/9.1.0` module has put the installation directory of t
 If you are interested, you can look at everything the module does with the `show` command (the [modulefile reference](http://modules.sourceforge.net/man/modulefile.html) may come in handy):
 
 ```
-$ module show languages/gcc-7.1.0
+$ module show languages/gcc-7.5.0
 -------------------------------------------------------------------
 help([[
 Description

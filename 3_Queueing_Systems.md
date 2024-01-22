@@ -49,16 +49,16 @@ $ squeue -u $USER
            1340971       cpu     bash  ab12345  R       0:05      1 compute382
 ```
 
-You can also filter jobs by reservation (`-R`) or account (`-A`):
+You can also filter jobs by partition (`-p`) or account (`-A`):
 
 ```bash
-$ squeue -R COSC024002
+$ squeue -p teach_cpu
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-           2481514 veryshort     bash  ab12345  R       0:06      1 compute084
+           2481514 teach_cpu     bash  ab12345  R       0:06      1 compute084
 
-$ squeue -A COSC024002
+$ squeue -A COMS031424
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-           2481514 veryshort     bash  ab12345  R       0:15      1 compute084
+           2481514 teach_cpu     bash  ab12345  R       0:15      1 compute084
 ```
 
 You can see all the details about a job, even after it has completed, using `scontrol`:
@@ -75,7 +75,7 @@ JobId=1340971 JobName=bash
    SubmitTime=2018-09-25T12:22:37 EligibleTime=2018-09-25T12:22:37
    StartTime=2018-09-25T12:22:37 EndTime=2018-09-25T12:27:59 Deadline=N/A
    PreemptTime=None SuspendTime=None SecsPreSuspend=0
-   Partition=cpu AllocNode:Sid=bc4login1:12671
+   Partition=teach_cpu AllocNode:Sid=bc4login1:12671
    ReqNodeList=(null) ExcNodeList=(null)
    NodeList=compute382
    BatchHost=compute382
@@ -91,24 +91,24 @@ JobId=1340971 JobName=bash
    Power=
 ```
 
-In SLURM, resources are organised into _partitions_ (as opposed to PBS queues), which can be listed with `sinfo`:
+In SLURM, resources are organised into _partitions_ (as opposed to PBS queues), which can be listed with `sinfo -s`:
 
 ```bash
-$ sinfo
-PARTITION       AVAIL  TIMELIMIT  NODES  STATE NODELIST
-veryshort          up    6:00:00      2    mix compute[473,507]
-veryshort          up    6:00:00    442  alloc compute[078-263,265-273,275-381,383-441,443-445,450-472,474-506,508-525],highmem[10-13]
-veryshort          up    6:00:00      8   idle compute[264,274,382,442,446-449]
-cpu*               up 14-00:00:0      2    mix compute[473,507]
-cpu*               up 14-00:00:0    438  alloc compute[078-263,265-273,275-381,383-441,443-445,450-472,474-506,508-525]
-cpu*               up 14-00:00:0      8   idle compute[264,274,382,442,446-449]
-hmem               up 14-00:00:0      8  alloc highmem[10-17]
-gpu                up 7-00:00:00     25    mix gpu[01,03-14,16-24,27-28,30]
-gpu_veryshort      up    1:00:00      2   idle gpu[31-32]
+$ sinfo -s
+PARTITION     AVAIL  TIMELIMIT   NODES(A/I/O/T) NODELIST
+cpu*             up 14-00:00:0      445/0/0/445 compute[068-176,178-241,246-260,262-320,322-519]
+hmem             up 14-00:00:0          6/2/0/8 highmem[10-17]
+gpu              up 7-00:00:00        21/5/0/26 gpu[06-31]
+gpu_veryshort    up    6:00:00          0/1/0/1 gpu32
+test             up    1:00:00      434/3/0/437 compute[080-241,246-520]
+veryshort        up    6:00:00      440/5/0/445 compute[080-241,246-520],highmem[10-17]
+dcv              up   infinite          0/0/1/1 bc4vis1
+teach_cpu        up    3:00:00          0/9/0/9 compute[242-245,521-525]
+teach_gpu        up    3:00:00          0/5/0/5 gpu[01-05]
 # Some lines omitted...
 ```
 
-By state, nodes can be free (`idle`), fully in use (`alloc`), or partially in use (`mix`). Note that partitions are not necessarily disjoint.
+By state, nodes can be free (`I` or `idle`), fully in use (`A` or `allocated`), or partially in use (`O` or `mix`). Note that partitions are not necessarily disjoint.
 
 You can query a specified partition only using `-p`:
 
@@ -146,20 +146,20 @@ The following table lists a few common job control options:
 
 | SLURM argument  | Meaning             |
 | --------------- | ------------------- |
-| `-p <partition>`    | The partition to run on |
-| `-N <n>` | Request `n` nodes |
-| `--ntasks-per-node <c>` | Request `c` tasks to be run on each node (often related to number of cores required) |
-| `-t <t>` | Specifies that your job should be allowed to run for at most `t` (time). You should specify `t` as `hh:mm:ss` |
-| `-J <name>` | Sets the job's name, so you can easily identify it later |
-| `-o <file>` | Sets a name for the file where the job's output will be saved. If you don't set this, an automatically generated named will be used |
+| `--partition=<partition>`    | The partition to run on |
+| `--nodes=<n>` | Request `n` nodes |
+| `--ntasks-per-node=<c>` | Request `c` tasks to be run on each node (often related to number of cores required) |
+| `--time=<t>` | Specifies that your job should be allowed to run for at most `t` (time). You should specify `t` as `hh:mm:ss` |
+| `--job-name=<name>` | Sets the job's name, so you can easily identify it later |
+| `--output=<file>` | Sets a name for the file where the job's output will be saved. If you don't set this, an automatically generated named will be used |
 | `--exclusive` | Does not allow other jobs to be scheduled on your allocated compute nodes, even if you don't fully utilise their resources |
 | `--gres=gpu:<g>` | Request `g` GPUs. GPUs are only present in nodes in the `gpu` partition, where each node has 2 GPUs |
-| `-A <account>` | SLURM allows users to be organised into groups (_accounts_) that share resources. A user can be part of serveral groups simultaneously, so `-A` is used to pick which account to use |
-| `--reservation <name>` | Nodes can be reserved for subsets of users. If you are part of a reservation, specify its name to use it |
+| `--account=<account>` | SLURM allows users to be organised into groups (_accounts_) that share resources. A user can be part of serveral groups simultaneously, so `-A` is used to pick which account to use |
+| `--reservation=<name>` | Nodes can be reserved for subsets of users. If you are part of a reservation, specify its name to use it |
 
 If you compare this to the equivalent PBS table above, note that `-j oe` and `-V` are implied on SLURM.
 
-**Important**: If you are taking the COMS30053 unit in 2023, please ensure you are using the `teach_cpu` partition along with account code `COSC028844` throughout the course. To do so, add the following options to your job submission commands: `-p teach_cpu -A COSC028844`.
+**Important**: If you are taking the COMS30053 unit in 2024, please ensure you are using the `teach_cpu` partition along with account code `COMS031424` throughout the course.
 
 #### Job files
 
@@ -174,13 +174,13 @@ Here is the same example script shown above, but using SLURM paramters instead:
 ```bash
 $ cat my.job
 #!/bin/bash
-#SBATCH --job-name LBM
-#SBATCH -o lbm.out
-#SBATCH -p teach_cpu
-#SBATCH -A COSC028844
-#SBATCH --nodes 1
-#SBATCH --ntasks-per-node 14
-#SBATCH -t 00:05:00
+#SBATCH --job-name=LBM
+#SBATCH --output=lbm.out
+#SBATCH --partition=teach_cpu
+#SBATCH --account=COMS031424
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=14
+#SBATCH --time=00:05:00
 
 $HOME/work/d2q9-bgk
 ```
@@ -205,10 +205,7 @@ You can also find [online version of the manpages](https://slurm.schedmd.com/man
 However, please note that web-based documentation may target a different version than what is used on BCp4, and not all features supported by SLURM may be enabled and available on BlueCrystal.
 If in doubt, always check the manpage on the system.
 
-You may also find useful the [SLURM command summary sheet](https://slurm.schedmd.com/pdfs/summary.pdf) or the [SLURM job management cheat sheet from the Iowa State University](https://gif.biotech.iastate.edu/slurm-slurm-job-management-cheat-sheet).
-If you have previously used PBS, [this page from the University of Southern California](https://hpcc.usc.edu/support/documentation/pbs-to-slurm/) gives a mapping between commonly used SLURM and PBS commands.
-
-ACRC have [online documentation for BCp4](https://www.acrc.bris.ac.uk/protected/bc4-docs/).
+You may also find useful the [SLURM command summary sheet](https://slurm.schedmd.com/pdfs/summary.pdf), and the ACRC have [online documentation for BCp4](https://www.acrc.bris.ac.uk/protected/bc4-docs/).
 
 ## Environment modules and queueing systems
 

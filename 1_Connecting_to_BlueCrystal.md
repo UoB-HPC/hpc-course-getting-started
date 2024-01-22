@@ -27,7 +27,7 @@ Where a username is required, we either use the placeholder `<username>` or the 
 
 BlueCrystal is split into several _phases_, which are system parts that have been added over time to keep up with hardware advances.
 The phases are independent and differ slightly in their configuration, so it's important that you don't confuse them.
-For 2019–20 we will use [BlueCrystal Phase 4](https://www.acrc.bris.ac.uk/acrc/phase4.htm) (BCp4).
+For 2024 we will use [BlueCrystal Phase 4](https://www.acrc.bris.ac.uk/acrc/phase4.htm) (BCp4).
 
 ## Connecting
 
@@ -50,16 +50,19 @@ After you type your password, you should get a prompt showing your username and 
 You will not always get assigned to the same one for load balancing reasons, but all the nodes are the same and share the file system.
 This means that when you log in, the hostname you see may end in a different digit than it does in the examples below—as long as it starts with `bc4login`, you're on the right system!
 
-For BCp3 (legacy), only the hostname is different:
+<!-- For BCp3 (legacy), only the hostname is different:
 
 ```
 $ ssh <username>@bluecrystalp3.bris.ac.uk
 [ab12345@newblue2 ~]$
-```
+``` -->
 
-Note that you get automatically generated passwords when you sign up for an account.
-These are different between Phase 3 and Phase 4, and might different again from your University account's password. **For 2019-20, the Phase 4 passwords are the same as your university password.**
+Your Blue Crystal Phase 4 password is the same as your university password.
 If you want to change the provided password, simply run `passwd` _on the system for which you want to change your password_ and follow the instructions.
+
+<!-- Note that you get automatically generated passwords when you sign up for an account.
+These are different between Phase 3 and Phase 4, and might different again from your University account's password. **For 2019-20, the Phase 4 passwords are the same as your university password.**
+If you want to change the provided password, simply run `passwd` _on the system for which you want to change your password_ and follow the instructions. -->
 
 ### Running graphical programs
 
@@ -92,6 +95,8 @@ Warning: untrusted X11 forwarding setup failed: xauth key data not generated
 
 Then you aren't running X (the graphical windowing subsystem) on your local machine. To solve this problem, run Xming on your Windows machine, and enable X11 forwarding for whichever shell tool you're using (PuTTY etc). For more details on how to do this, [see this helpful IT services webpage](https://www.bristol.ac.uk//it-services/locations/fits/science/putty_xming).
 
+On MacOS, you will need to install [XQuartz](https://www.xquartz.org/) to enable running graphical programs over ssh.
+
 
 ### Passwordless SSH access
 
@@ -113,7 +118,7 @@ Enter same passphrase again:
 ```
 
 Although `rsa` should be the default type, we specify it for completeness.
-We then ask for a 4096 bit key, which should be a good size to use in 2019.
+We then ask for a 4096 bit key, which should be a good size to use in 2024.
 You can give your key file any name when prompted to do so (`uob` is used in this example).
 
 You can also set a password for your key, if you choose to.
@@ -263,7 +268,7 @@ Depending on your editor of choice, you will either be editing files on your own
 If you want to edit files locally and transfer, some options are discussed in [_Prerequisites_](0_Prerequisites.md#required-and-useful-tools).
 
 If your editor supports editing files remotely, then you can use your _local editor_ to open _files on BlueCrystal_).
-For example, you can achieve this using [a VS Code plugin](https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode) or [the `scp://` scheme in Vim](http://vim.wikia.com/wiki/Editing_remote_files_via_scp_in_vim).
+For example, you can achieve this using [a VS Code plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh) or [the `scp://` scheme in Vim](http://vim.wikia.com/wiki/Editing_remote_files_via_scp_in_vim).
 
 Finally, you can use a terminal editor on BlueCrystal.
 Emacs, Vim, and nano are available, among others.

@@ -1,6 +1,6 @@
 # OpenMP
 
-This section discusses compiling and running OpenMP programs on BlueCrystal Phase 3.
+This section discusses compiling and running OpenMP programs on BlueCrystal Phase 4.
 As you will find, and unlike with [MPI](../6_MPI.md), there is almost no difference compared to when dealing with serial problems.
 Still, there are a number of issues that you should be aware of and hints worth remembering.
 
@@ -8,7 +8,7 @@ Note that this is **not** an OpenMP programming tutorial.
 
 ## OpenMP implementations
 
-OpenMP libraries are implemented by and shipped with all the compilers available on BCp3.
+OpenMP libraries are implemented by and shipped with all the compilers available on BCp4.
 You _do not_ need to load any additional module or use a compiler wrapper.
 However, be aware that each compiler vendor uses their own implementation of OpenMP, so some may perform better than others for a given code.
 
@@ -19,11 +19,11 @@ There are:
 
 - GCC 7.1:
 ```bash
-module load languages/gcc-7.1.0
+module load languages/gcc-10.4.0
 ```
 - Intel 16:
 ```bash
-module load languages/intel-compiler-16-u2
+module load languages/intel/2020-u4
 ```
 
 When compiling, you need to use a specific flag to enable OpenMP, _in addition to optimisation flags_, even at high levels of optimisations.
