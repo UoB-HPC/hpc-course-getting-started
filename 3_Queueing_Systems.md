@@ -108,7 +108,7 @@ teach_gpu        up    3:00:00          0/5/0/5 gpu[01-05]
 # Some lines omitted...
 ```
 
-By state, nodes can be free (`I` or `idle`), fully in use (`A` or `allocated`), or partially in use (`O` or `mix`). Note that partitions are not necessarily disjoint.
+By state, nodes can be idle (`I`), allocated (`A`), or other (`O`); with `T` representing the total number of nodes in the partition. Note that partitions are not necessarily disjoint.
 
 You can query a specified partition only using `-p`:
 
